@@ -49,23 +49,37 @@ function Hero() {
           </p>
         </div>
 
-        {/* Visual */}
-        <div className="hidden lg:flex justify-center">
-          <div className="relative flex h-80 w-80 items-center justify-center rounded-full border border-slate-800 bg-slate-900/50">
-            <div className="absolute inset-6 rounded-full border border-slate-800" />
+                    {/* Profile */}
+          <div className="hidden justify-center lg:flex">
+            <div className="relative">
+              
+              {/* Subtle glow */}
+              <div className="absolute -inset-6 rounded-full bg-blue-500/10 blur-3xl" />
 
-            <div className="text-center">
-              <p className="text-5xl font-bold text-blue-400">
-                KA
-              </p>
+              {/* Photo */}
+              <img
+                src="/images/1x1_icon.png"
+                alt="Kian Terrence Atienza"
+                className="relative h-96 w-96 rounded-full border border-slate-700 object-cover"
+              />
 
-              <p className="mt-2 text-sm text-slate-500">
-                Developer
-              </p>
+              {/* Name */}
+              <div className="absolute -bottom-20 left-1/2 -translate-x-1/2 whitespace-nowrap text-center">
+                  <p className="text-xs font-semibold uppercase tracking-[0.25em] text-white">
+                    Kian Terrence Atienza
+                  </p>
+
+                  <p className="mt-2 text-sm text-blue-400">
+                    Junior Software Developer
+                  </p>
+
+                  <p className="mt-1 text-xs text-slate-500">
+                    Web Developer · AI Enthusiast
+                  </p>
+                </div>
+
             </div>
           </div>
-        </div>
-
       </div>
     </section>
   );
