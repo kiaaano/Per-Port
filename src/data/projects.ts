@@ -4,6 +4,7 @@ export const projects = [
     description:
       "A modern personal portfolio designed to showcase my skills, projects, certifications, and experience as a junior software and web developer.",
     technologies: ["React", "TypeScript", "Tailwind CSS", "Vite"],
+    image: "/projects/project-name.png",
     github: "#",
     demo: "#",
   },
@@ -19,6 +20,7 @@ export const projects = [
       "JavaScript",
       "Node.js",
     ],
+    image: "/projects/project-name.png",
     github: "#",
     demo: "#",
   },

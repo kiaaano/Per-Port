@@ -15,8 +15,8 @@ function Proj() {
           </p>
 
           <h2 className="mt-4 text-4xl font-semibold tracking-tight md:text-5xl">
-            Projects built with
-            <span className="text-slate-400"> purpose.</span>
+            Projects built with{" "}
+            <span className="text-slate-400">purpose.</span>
           </h2>
 
           <p className="mt-5 text-sm leading-7 text-slate-400 md:text-base">
@@ -25,55 +25,75 @@ function Proj() {
           </p>
         </div>
 
-        {/* Projects */}
+        {/* Project cards */}
         <div className="mt-14 grid gap-6 md:grid-cols-2">
-          {projects.map((project) => (
+          {projects.map((project, index) => (
             <article
               key={project.title}
-              className="group rounded-2xl border border-slate-800 bg-slate-900/40 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-blue-500/40"
+              className="group overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/40 transition-all duration-300 hover:-translate-y-1 hover:border-blue-500/40"
             >
-              {/* Project number */}
-              <p className="text-sm font-medium text-blue-400">
-                0{projects.indexOf(project) + 1}
-              </p>
+              {/* Project Image */}
+                <div className="relative aspect-video overflow-hidden border-b border-slate-800 bg-slate-900">
+                  <img
+                    src={project.image}
+                    alt={`${project.title} preview`}
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
 
-              {/* Title */}
-              <h3 className="mt-6 text-2xl font-semibold">
-                {project.title}
-              </h3>
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent" />
+                </div>
 
-              {/* Description */}
-              <p className="mt-4 text-sm leading-7 text-slate-400">
-                {project.description}
-              </p>
+              {/* Project Content */}
+              <div className="p-6">
 
-              {/* Technologies */}
-              <div className="mt-6 flex flex-wrap gap-2">
-                {project.technologies.map((technology) => (
-                  <span
-                    key={technology}
-                    className="rounded-full border border-slate-700 px-3 py-1 text-xs text-slate-400"
-                  >
-                    {technology}
-                  </span>
-                ))}
-              </div>
+                {/* Number */}
+                <p className="text-sm font-medium text-blue-400">
+                  {String(index + 1).padStart(2, "0")}
+                </p>
 
-              {/* Links */}
-              <div className="mt-8 flex gap-4">
-                <a
-                  href={project.github}
-                  className="text-sm font-medium text-white transition-colors hover:text-blue-400"
-                >
-                  GitHub →
-                </a>
+                {/* Title */}
+                <h3 className="mt-4 text-2xl font-semibold tracking-tight">
+                  {project.title}
+                </h3>
 
-                <a
-                  href={project.demo}
-                  className="text-sm font-medium text-slate-400 transition-colors hover:text-blue-400"
-                >
-                  Live Demo →
-                </a>
+                {/* Description */}
+                <p className="mt-4 text-sm leading-7 text-slate-400">
+                  {project.description}
+                </p>
+
+                {/* Technologies */}
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {project.technologies.map((technology) => (
+                    <span
+                      key={technology}
+                      className="rounded-full border border-slate-700 px-3 py-1 text-xs text-slate-400"
+                    >
+                      {technology}
+                    </span>
+                  ))}
+                </div>
+
+                 {/* Links */}
+                    <div className="mt-8 flex gap-3">
+                      <a
+                        href={project.demo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="rounded-lg bg-white px-4 py-2 text-sm font-medium text-slate-950 transition-all duration-300 hover:-translate-y-0.5 hover:bg-slate-200"
+                      >
+                        Live Demo →
+                      </a>
+
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="rounded-lg border border-slate-700 px-4 py-2 text-sm font-medium text-slate-300 transition-all duration-300 hover:-translate-y-0.5 hover:border-blue-500/50 hover:text-white"
+                      >
+                        GitHub →
+                      </a>
+                    </div>
+
               </div>
             </article>
           ))}
