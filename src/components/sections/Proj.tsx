@@ -10,9 +10,13 @@ function Proj() {
 
         {/* Section heading */}
         <div className="max-w-2xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-blue-400">
-            Selected Work
-          </p>
+          <div className="flex items-center gap-3">
+            <span className="h-px w-8 bg-blue-400" />
+
+            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-blue-400">
+              Selected Work
+            </p>
+          </div>
 
          <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
           Projects built with{" "}
@@ -26,13 +30,16 @@ function Proj() {
         </div>
 
         {/* Project cards */}
-        <div className="mt-14 grid gap-6 md:grid-cols-2">
+        <div className="relative mt-14 grid gap-6 md:grid-cols-2">
+          <div className="pointer-events-none absolute -inset-10 -z-10 rounded-3xl bg-blue-500/5 blur-3xl" />
           {projects.map((project, index) => (
             <article
               key={project.title}
-              className="group overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/40 transition-all duration-300 hover:-translate-y-1 hover:border-blue-500/40"
+              className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/40 transition-all duration-300 hover:-translate-y-1 hover:border-blue-500/40"
             >
-             {/* Project Image */}
+
+
+            {/* Project Image */}
                 <a
                   href={project.demo}
                   target="_blank"
@@ -45,13 +52,11 @@ function Proj() {
                       alt={`${project.title} preview`}
                       className="block h-auto w-full transition-transform duration-500 group-hover:scale-105"
                     />
-
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent" />
                   </div>
                 </a>
 
               {/* Project Content */}
-              <div className="p-6">
+              <div className="flex flex-1 flex-col p-6">
 
                 {/* Number */}
                 <p className="text-sm font-medium text-blue-400">
@@ -81,7 +86,7 @@ function Proj() {
                 </div>
 
                  {/* Links */}
-                    <div className="mt-8 flex gap-3">
+                    <div className="mt-auto flex gap-3 pt-8">
                       {project.demo && (
                         <a
                           href={project.demo}
