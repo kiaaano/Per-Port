@@ -8,16 +8,16 @@ const navigation = [
     href: "#skills",
   },
   {
+    title: "Certifications",
+    href: "#certifications",
+  },
+  {
     title: "Projects",
     href: "#projects",
   },
   {
     title: "Contact",
     href: "#contact",
-  },
-  {
-  title: "Certifications",
-  href: "#certifications",
   },
 ];
 
