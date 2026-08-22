@@ -2,8 +2,15 @@ function About() {
   return (
     <section
       id="about"
-      className="border-t border-slate-800 bg-slate-950 py-24"
+      className="relative overflow-hidden border-t border-slate-800 bg-slate-950 py-24"
     >
+      {/* Background glow */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute left-1/4 top-0 h-96 w-96 -translate-x-1/2 rounded-full bg-blue-500/10 blur-3xl" />
+        <div className="absolute bottom-0 right-0 h-80 w-80 rounded-full bg-cyan-500/5 blur-3xl" />
+      </div>
+
+
       <div className="mx-auto max-w-7xl px-6">
         <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
           
@@ -14,7 +21,11 @@ function About() {
             </p>
 
             <h2 className="mt-4 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
-              Building with curiosity, purpose, and continuous learning.
+              Building with{" "}
+              <span className="bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
+                curiosity, purpose
+              </span>
+              , and continuous learning.
             </h2>
           </div>
 
@@ -43,7 +54,7 @@ function About() {
 
         {/* Highlights */}
         <div className="mt-16 grid gap-6 sm:grid-cols-3">
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/40 p-6">
+          <div className="group rounded-2xl border border-slate-800 bg-slate-900/40 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-blue-500/40 hover:bg-slate-900/70 hover:shadow-lg hover:shadow-blue-500/5">
             <p className="text-3xl font-semibold text-blue-400">01</p>
             <h3 className="mt-4 font-semibold text-white">
               Web Development
@@ -53,7 +64,7 @@ function About() {
             </p>
           </div>
 
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/40 p-6">
+          <div className="group rounded-2xl border border-slate-800 bg-slate-900/40 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-blue-500/40 hover:bg-slate-900/70 hover:shadow-lg hover:shadow-blue-500/5">
             <p className="text-3xl font-semibold text-blue-400">02</p>
             <h3 className="mt-4 font-semibold text-white">
               Software Development
@@ -63,7 +74,7 @@ function About() {
             </p>
           </div>
 
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/40 p-6">
+          <div className="group rounded-2xl border border-slate-800 bg-slate-900/40 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-blue-500/40 hover:bg-slate-900/70 hover:shadow-lg hover:shadow-blue-500/5">
             <p className="text-3xl font-semibold text-blue-400">03</p>
             <h3 className="mt-4 font-semibold text-white">
               AI Exploration

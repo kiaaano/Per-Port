@@ -46,9 +46,9 @@ function Hero() {
           
           </div>
 
-          <p className="mt-8 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+          <p className="mt-8 max-w-md text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
             Building with purpose. Learning without limits.
-          </p>
+           </p>
         </div>
 
                     {/* Profile */}
