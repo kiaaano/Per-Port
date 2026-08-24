@@ -1,38 +1,108 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import navigation from "../../data/navigation";
 
 function Navbar() {
   const [activeSection, setActiveSection] = useState("");
 
-       useEffect(() => {
-          const handleScroll = () => {
-            const scrollPosition = window.scrollY + 120;
+  const isNavigating = useRef(false);
+  const navigationTimeout = useRef<number | null>(null);
 
-            let currentSection = "";
+  useEffect(() => {
+    const handleScroll = () => {
+      // Don't let the scroll listener override
+      // the section selected by the user
+      if (isNavigating.current) {
+        return;
+      }
 
-            navigation.forEach((item) => {
-              const section = document.querySelector(item.href);
+      const scrollPosition = window.scrollY + 150;
 
-              if (section) {
-                const sectionTop =
-                  section.getBoundingClientRect().top + window.scrollY;
+      const sections = navigation
+        .map((item) => {
+          const section = document.querySelector(item.href);
 
-                if (scrollPosition >= sectionTop) {
-                  currentSection = item.href;
-                }
-              }
-            });
+          if (!section) return null;
 
-            setActiveSection(currentSection);
+          return {
+            href: item.href,
+            top:
+              section.getBoundingClientRect().top +
+              window.scrollY,
           };
+        })
+        .filter(Boolean) as {
+        href: string;
+        top: number;
+      }[];
 
-          window.addEventListener("scroll", handleScroll);
-          handleScroll();
+      if (sections.length === 0) return;
 
-          return () => {
-            window.removeEventListener("scroll", handleScroll);
-          };
-        }, []);
+      let currentSection = sections[0].href;
+
+      for (const section of sections) {
+        if (scrollPosition >= section.top) {
+          currentSection = section.href;
+        }
+      }
+
+      // Make Contact active at the bottom of the page
+      const viewportBottom =
+        window.scrollY + window.innerHeight;
+
+      const documentHeight =
+        document.documentElement.scrollHeight;
+
+      if (viewportBottom >= documentHeight - 50) {
+        currentSection = "#contact";
+      }
+
+      setActiveSection(currentSection);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const handleNavigation = (
+    event: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
+    if (!href.startsWith("#")) return;
+
+    event.preventDefault();
+
+    const section = document.querySelector(href);
+
+    if (!section) return;
+
+    // Tell the scroll listener to temporarily stop
+    // changing the active section
+    isNavigating.current = true;
+
+    // Immediately activate the clicked section
+    setActiveSection(href);
+
+    // Clear any previous timeout
+    if (navigationTimeout.current) {
+      window.clearTimeout(navigationTimeout.current);
+    }
+
+    // Smooth scroll
+    section.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+
+    // Wait for the smooth scrolling to finish
+    navigationTimeout.current = window.setTimeout(() => {
+      isNavigating.current = false;
+    }, 1000);
+  };
 
   return (
     <header className="sticky top-0 z-50 border-b border-slate-800 bg-slate-900">
@@ -51,6 +121,9 @@ function Navbar() {
             <li key={item.title}>
               <a
                 href={item.href}
+                onClick={(event) =>
+                  handleNavigation(event, item.href)
+                }
                 className={`relative py-1 transition-colors duration-300 hover:text-blue-400 ${
                   activeSection === item.href
                     ? "text-blue-400"
