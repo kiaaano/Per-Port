@@ -38,7 +38,7 @@ function Hero() {
            </a>
 
            <a
-            href="/resume.pdf"
+            href="ATIENZA, K._RESUME"
             className="rounded-lg border border-slate-700 px-6 py-3 text-sm font-semibold text-slate-200 transition-colors duration-300 hover:border-slate-500 hover:bg-slate-900"
           >
             Download Resume

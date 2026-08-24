@@ -73,7 +73,7 @@ function Contact() {
 
           {/* GitHub */}
           <a
-            href="https://github.com/"
+            href="https://github.com/Pokemoan"
             target="_blank"
             rel="noopener noreferrer"
             className="group relative overflow-hidden rounded-2xl border border-slate-800/80 bg-slate-900/40 p-7 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1.5 hover:border-blue-500/40 hover:bg-slate-900/70 hover:shadow-2xl hover:shadow-blue-500/5"
@@ -108,7 +108,7 @@ function Contact() {
 
           {/* LinkedIn */}
           <a
-            href="https://www.linkedin.com/"
+            href="https://www.linkedin.com/in/kian-terrence-atienza-20411a368/"
             target="_blank"
             rel="noopener noreferrer"
             className="group relative overflow-hidden rounded-2xl border border-slate-800/80 bg-slate-900/40 p-7 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1.5 hover:border-blue-500/40 hover:bg-slate-900/70 hover:shadow-2xl hover:shadow-blue-500/5"

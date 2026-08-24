@@ -4,9 +4,9 @@ export const projects = [
     description:
       "A modern personal portfolio designed to showcase my skills, projects, certifications, and experience as a junior software and web developer.",
     technologies: ["React", "TypeScript", "Tailwind CSS", "Vite"],
-    image: "/projects/project-name.png",
-    github: "",
-    demo: "",
+    image: "/projects/portcap.png",
+    github: "https://github.com/Pokemoan/Per-Port",
+    demo: "https://kiandev.vercel.app/",
   },
 
   {
