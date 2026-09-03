@@ -1,17 +1,18 @@
+
 function About() {
   return (
     <section
       id="about"
-      className="relative overflow-hidden border-t border-slate-800 bg-slate-950 py-24"
+      className="relative overflow-hidden border-t border-slate-800 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 py-24"
     >
       {/* Background glow */}
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-1/4 top-0 h-96 w-96 -translate-x-1/2 rounded-full bg-blue-500/10 blur-3xl" />
+        <div className="absolute left-1/4 top-0 h-96 w-96 -translate-x-1/2 rounded-full bg-blue-500/5 blur-3xl" />
         <div className="absolute bottom-0 right-0 h-80 w-80 rounded-full bg-cyan-500/5 blur-3xl" />
       </div>
 
-
-      <div className="mx-auto max-w-7xl px-6">
+      {/* Content */}
+      <div className="relative z-10 mx-auto max-w-7xl px-6">
         <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
           
           {/* Section heading */}
@@ -54,35 +55,46 @@ function About() {
 
         {/* Highlights */}
         <div className="mt-16 grid gap-6 sm:grid-cols-3">
+          
+          {/* Web Development */}
           <div className="group rounded-2xl border border-slate-800 bg-slate-900/40 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-blue-500/40 hover:bg-slate-900/70 hover:shadow-lg hover:shadow-blue-500/5">
             <p className="text-3xl font-semibold text-blue-400">01</p>
+
             <h3 className="mt-4 font-semibold text-white">
               Web Development
             </h3>
+
             <p className="mt-2 text-sm leading-6 text-slate-400">
               Building responsive and modern web interfaces.
             </p>
           </div>
 
+          {/* Software Development */}
           <div className="group rounded-2xl border border-slate-800 bg-slate-900/40 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-blue-500/40 hover:bg-slate-900/70 hover:shadow-lg hover:shadow-blue-500/5">
             <p className="text-3xl font-semibold text-blue-400">02</p>
+
             <h3 className="mt-4 font-semibold text-white">
               Software Development
             </h3>
+
             <p className="mt-2 text-sm leading-6 text-slate-400">
               Creating practical applications with clean and maintainable code.
             </p>
           </div>
 
+          {/* AI Exploration */}
           <div className="group rounded-2xl border border-slate-800 bg-slate-900/40 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-blue-500/40 hover:bg-slate-900/70 hover:shadow-lg hover:shadow-blue-500/5">
             <p className="text-3xl font-semibold text-blue-400">03</p>
+
             <h3 className="mt-4 font-semibold text-white">
               AI Exploration
             </h3>
+
             <p className="mt-2 text-sm leading-6 text-slate-400">
               Exploring AI technologies and their applications in software.
             </p>
           </div>
+
         </div>
       </div>
     </section>
