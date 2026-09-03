@@ -1,19 +1,41 @@
 import BlurText from "../reactbits/BlurText";
-import Aurora from "../reactbits/Aurora";
+import Scanner from "../reactbits/Scanner";
 import ProfileCard from "../reactbits/ProfileCard";
 
 function Hero() {
   return (
     <section className="relative flex min-h-[calc(100vh-73px)] items-center overflow-hidden bg-slate-950">
       {/* Animated background */}
-      <div className="absolute inset-0 opacity-70">
-        <Aurora
-          colorStops={["#3b82f6", "#6366f1", "#3b82f6"]}
-          amplitude={0.8}
-          blend={0.5}
-          speed={0.6}
-        />
-      </div>
+      <div className="absolute inset-0 h-full w-full opacity-60">
+          <Scanner
+            color1="#1D4ED8"
+            color2="#3B82F6"
+            color3="#93C5FD"
+            speed={0.5}
+            sweepSpeed={0.25}
+            sweepWidth={1.6}
+            sweepFalloff={6}
+            scale={1.5}
+            frequency={2}
+            ripple={0.22}
+            bandDensity={11}
+            lineSharpness={5.5}
+            glow={0.15}
+            scanDirection="vertical"
+            colorSpread={0.7}
+            brightness={0.8}
+            contrast={1.15}
+            softness={1.4}
+            vignette={0.6}
+            scanline
+            grain
+            grainIntensity={0.03}
+            opacity={1}
+            mouseInteraction
+            mouseRadius={0.5}
+            mouseStrength={0.3}
+          />
+        </div>
 
       {/* Content */}
       <div className="relative mx-auto grid w-full max-w-7xl items-center gap-12 px-6 py-16 sm:py-20 lg:grid-cols-2">
