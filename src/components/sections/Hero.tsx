@@ -1,5 +1,6 @@
 import BlurText from "../reactbits/BlurText";
 import Aurora from "../reactbits/Aurora";
+import ProfileCard from "../reactbits/ProfileCard";
 
 function Hero() {
   return (
@@ -61,23 +62,28 @@ function Hero() {
 
         {/* Profile */}
         <div className="order-1 flex justify-center pb-16 lg:order-2 lg:pb-0">
-          <div className="relative">
-            <div className="absolute -inset-6 rounded-full bg-blue-500/10 blur-3xl" />
-
-            <img
-              src="/images/1x1_icon.png"
-              alt="Kian Terrence Atienza"
-              className="relative h-72 w-72 rounded-full border border-slate-700/80 object-cover shadow-2xl sm:h-80 sm:w-80 lg:h-96 lg:w-96"
-            />
-
-            <div className="absolute -bottom-16 left-1/2 w-max -translate-x-1/2 text-center">
-              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-white">
-                Kian Terrence Atienza
-              </p>
-              <p className="mt-2 text-sm text-blue-400">Junior Software Developer</p>
-              <p className="mt-1 text-xs text-slate-500">Web Developer · AI Enthusiast</p>
-            </div>
-          </div>
+          <ProfileCard
+            avatarUrl="/images/1x1_icon.png"
+            miniAvatarUrl="/images/1x1_icon.png"
+            name="Kian Terrence Atienza"
+            title="Junior Software Developer"
+            handle="kiandev"
+            status="Available for opportunities"
+            contactText="Contact Me"
+            innerGradient="linear-gradient(145deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 64, 175, 0.35) 100%)"
+            behindGlowEnabled={true}
+            behindGlowColor="rgba(59, 130, 246, 0.30)"
+            behindGlowSize="40%"
+            enableTilt={true}
+            enableMobileTilt={false}
+            showUserInfo={true}
+            className="w-full max-w-[380px]"
+            onContactClick={() => {
+              document
+                .getElementById("contact")
+                ?.scrollIntoView({ behavior: "smooth" });
+            }}
+          />
         </div>
       </div>
     </section>
