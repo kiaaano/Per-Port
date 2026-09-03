@@ -6,13 +6,13 @@ function Hero() {
   return (
     <section className="relative flex min-h-[calc(100vh-73px)] items-center overflow-hidden bg-slate-950">
       {/* Animated background */}
-      <div className="absolute inset-0 h-full w-full opacity-60">
+      <div className="absolute inset-0 h-full w-full opacity-50">
           <Scanner
             color1="#1D4ED8"
             color2="#3B82F6"
             color3="#93C5FD"
             speed={0.5}
-            sweepSpeed={0.25}
+            sweepSpeed={0.3}
             sweepWidth={1.6}
             sweepFalloff={6}
             scale={1.5}
@@ -20,20 +20,20 @@ function Hero() {
             ripple={0.22}
             bandDensity={11}
             lineSharpness={5.5}
-            glow={0.15}
+            glow={0.22}
             scanDirection="vertical"
             colorSpread={0.7}
-            brightness={0.8}
+            brightness={2}
             contrast={1.15}
             softness={1.4}
-            vignette={0.6}
+            vignette={0.45}
             scanline
             grain
-            grainIntensity={0.03}
+            grainIntensity={0.05}
             opacity={1}
             mouseInteraction
             mouseRadius={0.5}
-            mouseStrength={0.3}
+            mouseStrength={1.5}
           />
         </div>
 
