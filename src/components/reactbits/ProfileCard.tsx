@@ -412,7 +412,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
             calc((var(--pointer-from-top) * 20px) - 6px) 20px -5px;
         transition: transform 1s ease;
         transform: translateZ(0) rotateX(0deg) rotateY(0deg);
-        background: rgba(8, 15, 35, 0.95);
+        background: rgba(0, 0, 0, 0.9);
         backface-visibility: hidden;
         overflow: hidden;
         }
@@ -443,7 +443,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
         inset: 0;
         position: absolute;
         background-image: var(--inner-gradient);
-        background-color: rgba(8, 15, 35, 0.95);
+        background-color: rgba(0, 0, 0, 0.9);
         transform: none;
         }
 
@@ -585,23 +585,20 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
         }
 
         .pc-avatar-content {
-        mix-blend-mode: luminosity;
+        mix-blend-mode: normal;
         overflow: visible;
         transform: translateZ(2);
         backface-visibility: hidden;
         }
 
-       .pc-avatar-content .avatar {
-        width: 92%;
+        .pc-avatar-content .avatar {
+        width: 100%;
         position: absolute;
         left: 50%;
         transform-origin: 50% 100%;
-        transform: translateX(calc(-50% + (var(--pointer-from-left) - 0.5) * 6px))
-            translateZ(0)
-            scaleY(calc(1 + (var(--pointer-from-top) - 0.5) * 0.02))
-            scaleX(calc(1 + (var(--pointer-from-left) - 0.5) * 0.01));
+        transform: translateX(calc(-50% + (var(--pointer-from-left) - 0.5) * 6px)) translateZ(0)
+            scaleY(calc(1 + (var(--pointer-from-top) - 0.5) * 0.02)) scaleX(calc(1 + (var(--pointer-from-left) - 0.5) * 0.01));
         bottom: -1px;
-        object-fit: contain;
         backface-visibility: hidden;
         will-change: transform;
         transition: transform 120ms ease-out;
