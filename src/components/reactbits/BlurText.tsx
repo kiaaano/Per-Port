@@ -1,5 +1,6 @@
 import { motion, type Transition, type Easing } from 'motion/react';
 import { useEffect, useRef, useState, useMemo } from 'react';
+import GradientText from "./GradientText";
 
 type BlurTextProps = {
   text?: string;
@@ -14,6 +15,10 @@ type BlurTextProps = {
   easing?: Easing | Easing[];
   onAnimationComplete?: () => void;
   stepDuration?: number;
+
+  gradientWords?: string[];
+  gradientColors?: string[];
+  gradientAnimationSpeed?: number;
 };
 
 const buildKeyframes = (
@@ -40,7 +45,10 @@ const BlurText: React.FC<BlurTextProps> = ({
   animationTo,
   easing = (t: number) => t,
   onAnimationComplete,
-  stepDuration = 0.35
+  stepDuration = 0.35,
+  gradientWords = [],
+  gradientColors = ['#3B82F6', '#6366F1', '#22D3EE'],
+  gradientAnimationSpeed = 6
 }) => {
   const elements = animateBy === 'words' ? text.split(' ') : text.split('');
   const [inView, setInView] = useState(false);
@@ -100,7 +108,20 @@ const BlurText: React.FC<BlurTextProps> = ({
             onAnimationComplete={index === elements.length - 1 ? onAnimationComplete : undefined}
             style={{ display: 'inline-block', willChange: 'transform, filter, opacity' }}
           >
-            {segment === ' ' ? '\u00A0' : segment}
+            {gradientWords.includes(segment.trim().replace(/[.,!?;:]+$/, '')) ? (
+              <GradientText
+                colors={gradientColors}
+                animationSpeed={gradientAnimationSpeed}
+                showBorder={false}
+                direction="horizontal"
+                yoyo={true}
+                className="inline"
+              >
+                {segment.trim()}
+              </GradientText>
+            ) : (
+              segment
+            )}
             {animateBy === 'words' && index < elements.length - 1 && '\u00A0'}
           </motion.span>
         );

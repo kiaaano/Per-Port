@@ -1,4 +1,5 @@
 
+
 function About() {
   return (
     <section
@@ -8,11 +9,12 @@ function About() {
       {/* Background glow */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-1/4 top-0 h-96 w-96 -translate-x-1/2 rounded-full bg-blue-500/5 blur-3xl" />
+
         <div className="absolute bottom-0 right-0 h-80 w-80 rounded-full bg-cyan-500/5 blur-3xl" />
       </div>
 
-      {/* Content */}
       <div className="relative z-10 mx-auto max-w-7xl px-6">
+        {/* Main content */}
         <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
           
           {/* Section heading */}
@@ -21,7 +23,7 @@ function About() {
               About Me
             </p>
 
-            <h2 className="mt-4 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+            <h2 className="mt-4 text-4xl font-semibold leading-tight tracking-tight text-white sm:text-5xl">
               Building with{" "}
               <span className="bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
                 curiosity, purpose
@@ -30,7 +32,7 @@ function About() {
             </h2>
           </div>
 
-          {/* Content */}
+          {/* Description */}
           <div className="space-y-6 text-base leading-8 text-slate-400">
             <p>
               I'm Kian Terrence Atienza, an aspiring Junior Software Developer
@@ -58,7 +60,9 @@ function About() {
           
           {/* Web Development */}
           <div className="group rounded-2xl border border-slate-800 bg-slate-900/40 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-blue-500/40 hover:bg-slate-900/70 hover:shadow-lg hover:shadow-blue-500/5">
-            <p className="text-3xl font-semibold text-blue-400">01</p>
+            <p className="text-3xl font-semibold text-blue-400">
+              01
+            </p>
 
             <h3 className="mt-4 font-semibold text-white">
               Web Development
@@ -71,20 +75,25 @@ function About() {
 
           {/* Software Development */}
           <div className="group rounded-2xl border border-slate-800 bg-slate-900/40 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-blue-500/40 hover:bg-slate-900/70 hover:shadow-lg hover:shadow-blue-500/5">
-            <p className="text-3xl font-semibold text-blue-400">02</p>
+            <p className="text-3xl font-semibold text-blue-400">
+              02
+            </p>
 
             <h3 className="mt-4 font-semibold text-white">
               Software Development
             </h3>
 
             <p className="mt-2 text-sm leading-6 text-slate-400">
-              Creating practical applications with clean and maintainable code.
+              Creating practical applications with clean and maintainable
+              code.
             </p>
           </div>
 
-          {/* AI Exploration */}
+          {/* AI */}
           <div className="group rounded-2xl border border-slate-800 bg-slate-900/40 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-blue-500/40 hover:bg-slate-900/70 hover:shadow-lg hover:shadow-blue-500/5">
-            <p className="text-3xl font-semibold text-blue-400">03</p>
+            <p className="text-3xl font-semibold text-blue-400">
+              03
+            </p>
 
             <h3 className="mt-4 font-semibold text-white">
               AI Exploration

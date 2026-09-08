@@ -1,6 +1,7 @@
 import BlurText from "../reactbits/BlurText";
 import Scanner from "../reactbits/Scanner";
 import ProfileCard from "../reactbits/ProfileCard";
+import TextType from "../reactbits/TextType";
 
 function Hero() {
   return (
@@ -47,18 +48,17 @@ function Hero() {
           </p>
 
           <BlurText
-            text="Crafting modernity with creativity and purpose."
-            delay={80}
-            animateBy="words"
-            direction="top"
-            className="max-w-3xl text-4xl font-semibold leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-6xl"
-          />
+              text="Crafting modernity with creativity and purpose."
+              delay={80}
+              animateBy="words"
+              direction="top"
+              gradientWords={["modernity", "creativity", "purpose"]}
+              gradientColors={["#3B82F6", "#6366F1", "#22D3EE"]}
+              gradientAnimationSpeed={6}
+              className="max-w-3xl text-4xl font-semibold leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-6xl"
+            />
 
-          <p className="mt-6 max-w-2xl text-base leading-7 text-slate-400 sm:text-lg">
-            I'm Kian Terrence Atienza — an aspiring Junior Software Developer,
-            Web Developer, and AI Enthusiast passionate about building modern
-            digital experiences that are functional, intuitive, and purposeful.
-          </p>
+          
 
           <div className="mt-8 flex flex-wrap gap-4">
             
