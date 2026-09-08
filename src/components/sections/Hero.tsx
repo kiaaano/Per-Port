@@ -1,7 +1,6 @@
 import BlurText from "../reactbits/BlurText";
 import Scanner from "../reactbits/Scanner";
 import ProfileCard from "../reactbits/ProfileCard";
-import TextType from "../reactbits/TextType";
 
 function Hero() {
   return (
