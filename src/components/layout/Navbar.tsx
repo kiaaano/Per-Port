@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import navigation from "../../data/navigation";
+import GradientText from "../reactbits/GradientText";
 
 function Navbar() {
   const [activeSection, setActiveSection] = useState("");
@@ -109,11 +110,26 @@ function Navbar() {
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         {/* Logo */}
         <a
-          href="/"
-          className="text-2xl font-bold text-blue-400"
-        >
-          Kian.dev
-        </a>
+  href="/"
+  className="group font-mono text-lg tracking-tight"
+>
+  <span className="font-normal text-slate-100">
+    &lt;
+  </span>
+
+<GradientText
+  colors={["#1D4ED8", "#3B82F6", "#60A5FA"]}
+  animationSpeed={3}
+  showBorder={false}
+  className="!text-2xl !font-black"
+>
+  kian.dev
+</GradientText>
+
+  <span className="font-normal text-slate-100">
+    /&gt;
+  </span>
+</a>
 
         {/* Navigation */}
         <ul className="hidden items-center gap-8 text-slate-300 md:flex">
