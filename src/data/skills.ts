@@ -29,15 +29,6 @@ const skills = [
       "Arduino IDE",
     ],
   },
-  {
-    category: "AI & Emerging Tech",
-    items: [
-      "AI Tools",
-      "AI Integration",
-      "Prompt Engineering",
-      "IoT",
-    ],
-  },
 ];
 
 export default skills;
