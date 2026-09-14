@@ -403,7 +403,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
         height: 80svh;
         max-height: 540px;
         display: grid;
-        aspect-ratio: 0.718;
+        aspect-ratio: 0.76;
         border-radius: var(--card-radius);
         position: relative;
         background-blend-mode: color-dodge, normal, normal, normal;
@@ -615,7 +615,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
 
         .pc-user-info {
         position: absolute;
-        --ui-inset: 20px;
+        --ui-inset: 18px;
         --ui-radius-bias: 6px;
         bottom: var(--ui-inset);
         left: var(--ui-inset);
@@ -624,18 +624,22 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
         display: flex;
         align-items: center;
         justify-content: space-between;
+        gap: 14px;
         background: rgba(255, 255, 255, 0.1);
         backdrop-filter: blur(30px);
         border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: calc(max(0px, var(--card-radius) - var(--ui-inset) + var(--ui-radius-bias)));
-        padding: 12px 14px;
+        padding: 14px 16px;
         pointer-events: auto;
-        }
+        box-sizing: border-box;
+      }
 
         .pc-user-details {
         display: flex;
         align-items: center;
         gap: 12px;
+        flex: 1;
+        min-width: 0;
         }
 
         .pc-mini-avatar {
@@ -658,7 +662,8 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
         display: flex;
         align-items: flex-start;
         flex-direction: column;
-        gap: 6px;
+        gap: 7px;
+        min-width: 0;
         }
 
         .pc-handle {
@@ -669,9 +674,10 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
         }
 
         .pc-status {
-        font-size: 14px;
+        font-size: 13px;
         color: rgba(255, 255, 255, 0.7);
-        line-height: 1;
+        line-height: 1.25;
+        max-width: 130px;
         }
 
         .pc-contact-btn {
@@ -709,37 +715,45 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
         .pc-details {
         width: 100%;
         position: absolute;
-        top: 3em;
+        top: 2.2em;
+        left: 0;
+        padding: 0 24px;
         display: flex;
         flex-direction: column;
-        }
+        align-items: center;
+        gap: 6px;
+        box-sizing: border-box;
+      }
 
         .pc-details h3 {
+        width: 100%;
+        margin: 0;
         font-weight: 600;
-        margin: 0;
-        font-size: min(5svh, 3em);
-        margin: 0;
+        font-size: min(4.6svh, 2.8em);
+        line-height: 1.08;
+        text-align: center;
         background-image: linear-gradient(to bottom, #fff, #6f6fbe);
-        background-size: 1em 1.5em;
+        background-size: 100% 100%;
         -webkit-text-fill-color: transparent;
         background-clip: text;
         -webkit-background-clip: text;
-        }
+      }
 
         .pc-details p {
         font-weight: 600;
         position: relative;
-        top: -12px;
+        top: 0;
         white-space: nowrap;
-        font-size: 16px;
-        margin: 0 auto;
-        width: min-content;
+        font-size: 15px;
+        line-height: 1.2;
+        margin: 0;
+        width: max-content;
         background-image: linear-gradient(to bottom, #fff, #4a4ac0);
-        background-size: 1em 1.5em;
+        background-size: 100% 100%;
         -webkit-text-fill-color: transparent;
         background-clip: text;
         -webkit-background-clip: text;
-        }
+      }
 
         @keyframes glow-bg {
         0% {
