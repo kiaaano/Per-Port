@@ -9,7 +9,8 @@ const categoryBadgeStyles: Record<string, string> = {
     "border-indigo-400/30 bg-indigo-400/10 text-indigo-300",
 };
 
-const defaultBadgeStyle = "border-slate-400/30 bg-slate-400/10 text-slate-300";
+const defaultBadgeStyle =
+  "border-slate-400/30 bg-slate-400/10 text-slate-300";
 
 function Certifications() {
   return (
@@ -36,45 +37,64 @@ function Certifications() {
 
         {/* Certifications */}
         <div className="mt-16 grid gap-6 md:grid-cols-2">
-            {certifications.map((certification) => (
-             <BorderGlow
+          {certifications.map((certification) => (
+              <div
                 key={certification.title}
-                backgroundColor="#0f172a"
-                glowColor="210 90 65"
-                glowRadius={15}
-                colors={["#3b82f6", "#38bdf8", "#22d3ee"]}
-                fillOpacity={0}
-                className="group p-6 transition-transform duration-300 hover:-translate-y-1"
+                 className="group relative h-full"
               >
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <h3 className="text-lg font-semibold leading-7 text-white">
-                      {certification.title}
-                    </h3>
+                {/* Certification Card */}
+                <BorderGlow
+                  backgroundColor="#0f172a"
+                  glowColor="210 90 65"
+                  glowRadius={15}
+                  colors={["#3b82f6", "#38bdf8", "#22d3ee"]}
+                  fillOpacity={0}
+                  className="h-full min-h-[150px] p-6 transition-transform duration-300 group-hover:-translate-y-1"
+                >
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="pr-36">
+                      <h3 className="text-lg font-semibold leading-7 text-white">
+                        {certification.title}
+                      </h3>
 
-                    <p className="mt-2 text-sm text-slate-500">
-                      {certification.provider}
-                    </p>
+                      <p className="mt-2 text-sm text-slate-500">
+                        {certification.provider}
+                      </p>
+                    </div>
+
+                    {/* Category */}
+                    <div className="grid shrink-0 justify-items-end">
+                      <span className="col-start-1 row-start-1 flex h-7 items-center text-xl text-blue-400 transition-all duration-300 group-hover:scale-75 group-hover:opacity-0">
+                        ↗
+                      </span>
+
+                      <span
+                        className={`col-start-1 row-start-1 flex h-7 scale-90 items-center whitespace-nowrap rounded-full border px-2.5 text-[10px] font-medium uppercase tracking-wide opacity-0 transition-all duration-300 group-hover:scale-100 group-hover:opacity-100 ${
+                          categoryBadgeStyles[certification.category] ??
+                          defaultBadgeStyle
+                        }`}
+                      >
+                        {certification.category}
+                      </span>
+                    </div>
                   </div>
+                </BorderGlow>
 
-                  <div className="grid shrink-0 justify-items-end">
-                    <span className="col-start-1 row-start-1 flex h-7 items-center text-xl text-blue-400 transition-all duration-300 group-hover:scale-75 group-hover:opacity-0">
-                      ↗
-                    </span>
-
-                    <span
-                      className={`col-start-1 row-start-1 flex h-7 scale-90 items-center whitespace-nowrap rounded-full border px-2.5 text-[10px] font-medium uppercase tracking-wide opacity-0 transition-all duration-300 group-hover:scale-100 group-hover:opacity-100 ${
-                        categoryBadgeStyles[certification.category] ??
-                        defaultBadgeStyle
-                      }`}
-                    >
-                      {certification.category}
-                    </span>
+                {/* Badge Preview */}
+                <div className="pointer-events-none absolute right-6 -top-16 z-50">
+                  <div className="origin-bottom-right scale-75 opacity-0 transition-all duration-500 ease-out group-hover:scale-100 group-hover:opacity-100">
+                    <div className="rounded-2xl border border-blue-400/30 bg-slate-950/95 p-3 shadow-[0_20px_50px_rgba(0,0,0,0.5)] backdrop-blur-xl">
+                      <img
+                        src={certification.image}
+                        alt={`${certification.title} badge`}
+                        className="h-32 w-32 rounded-xl object-contain"
+                      />
+                    </div>
                   </div>
                 </div>
-              </BorderGlow>
+              </div>
             ))}
-          </div>
+        </div>
       </div>
     </section>
   );
