@@ -45,6 +45,7 @@ function Certifications() {
                 {/* Certification Card */}
                 <BorderGlow
                   backgroundColor="#0f172a"
+                  edgeSensitivity={5}
                   glowColor="210 90 65"
                   glowRadius={15}
                   colors={["#3b82f6", "#38bdf8", "#22d3ee"]}
