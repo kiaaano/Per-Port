@@ -49,10 +49,11 @@ function Certifications() {
                   glowRadius={15}
                   colors={["#3b82f6", "#38bdf8", "#22d3ee"]}
                   fillOpacity={0}
-                  className="h-full min-h-[150px] p-6 transition-transform duration-300 group-hover:-translate-y-1"
+                  className="h-full min-h-[145px] p-6 transition-transform duration-300 group-hover:-translate-y-1"
                 >
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="pr-36">
+                  <div className="flex h-full items-start justify-between gap-6">
+                    {/* Certification Information */}
+                    <div className="min-w-0 flex-1">
                       <h3 className="text-lg font-semibold leading-7 text-white">
                         {certification.title}
                       </h3>
@@ -60,28 +61,28 @@ function Certifications() {
                       <p className="mt-2 text-sm text-slate-500">
                         {certification.provider}
                       </p>
-                    </div>
 
-                    {/* Category */}
-                    <div className="grid shrink-0 justify-items-end">
-                      <span className="col-start-1 row-start-1 flex h-7 items-center text-xl text-blue-400 transition-all duration-300 group-hover:scale-75 group-hover:opacity-0">
-                        ↗
-                      </span>
+                      {/* Category */}
+                      <div className="mt-4 grid w-fit">
+                        <span className="col-start-1 row-start-1 flex h-7 items-center text-sm text-blue-400 transition-all duration-300 group-hover:scale-75 group-hover:opacity-0">
+                          ◈
+                        </span>
 
-                      <span
-                        className={`col-start-1 row-start-1 flex h-7 scale-90 items-center whitespace-nowrap rounded-full border px-2.5 text-[10px] font-medium uppercase tracking-wide opacity-0 transition-all duration-300 group-hover:scale-100 group-hover:opacity-100 ${
-                          categoryBadgeStyles[certification.category] ??
-                          defaultBadgeStyle
-                        }`}
-                      >
-                        {certification.category}
-                      </span>
+                        <span
+                          className={`col-start-1 row-start-1 flex h-7 w-fit scale-90 items-center whitespace-nowrap rounded-full border px-2.5 text-[10px] font-medium uppercase tracking-wide opacity-0 transition-all duration-300 group-hover:scale-100 group-hover:opacity-100 ${
+                            categoryBadgeStyles[certification.category] ??
+                            defaultBadgeStyle
+                          }`}
+                        >
+                          {certification.category}
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </BorderGlow>
 
                 {/* Badge Preview */}
-                <div className="pointer-events-none absolute right-6 -top-16 z-50">
+                <div className="pointer-events-none absolute right-2 -top-20 z-50">
                   <div className="origin-bottom-right scale-75 opacity-0 transition-all duration-500 ease-out group-hover:scale-100 group-hover:opacity-100">
                     <div className="rounded-2xl border border-blue-400/30 bg-slate-950/95 p-3 shadow-[0_20px_50px_rgba(0,0,0,0.5)] backdrop-blur-xl">
                       <img

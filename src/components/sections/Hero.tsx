@@ -1,6 +1,7 @@
 import BlurText from "../reactbits/BlurText";
 import Scanner from "../reactbits/Scanner";
 import ProfileCard from "../reactbits/ProfileCard";
+import SpecularButton from "../reactbits/SpecularButton";
 
 function Hero() {
   return (
@@ -60,21 +61,47 @@ function Hero() {
           
 
           <div className="mt-8 flex flex-wrap gap-4">
-            
-            <a
-              href="#projects"
-              className="rounded-lg bg-blue-500 px-6 py-3 text-sm font-semibold text-white transition-colors duration-300 hover:bg-blue-400"
-            >
-              View Projects
-            </a>
+              <SpecularButton
+                href="#projects"
+                size="md"
+                radius={10}
+                tint="#1D4ED8"
+                tintOpacity={0.35}
+                textColor="#ffffff"
+                lineColor="#60A5FA"
+                baseColor="#1E3A8A"
+                intensity={1.4}
+                shineSize={14}
+                shineFade={35}
+                thickness={1}
+                speed={0.35}
+                followMouse
+                proximity={250}
+              >
+                View Projects
+              </SpecularButton>
 
-            <a
-              href="ATIENZA, K._RESUME.pdf"
-              className="rounded-lg border border-slate-700 px-6 py-3 text-sm font-semibold text-slate-200 transition-colors duration-300 hover:border-slate-500 hover:bg-slate-900"
-            >
-              Download Resume
-            </a>
-          </div>
+              <SpecularButton
+                href="/ATIENZA, K._RESUME.pdf"
+                download
+                size="md"
+                radius={10}
+                tint="#0F172A"
+                tintOpacity={0.65}
+                textColor="#E2E8F0"
+                lineColor="#64748B"
+                baseColor="#1E293B"
+                intensity={1.2}
+                shineSize={12}
+                shineFade={35}
+                thickness={1}
+                speed={0.35}
+                followMouse
+                proximity={250}
+              >
+                Download Resume
+              </SpecularButton>
+            </div>
 
           <p className="mt-8 max-w-md text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
             Building with purpose. Learning without limits.

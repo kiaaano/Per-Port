@@ -32,6 +32,12 @@ export interface SpecularButtonProps {
   onClick?: MouseEventHandler<HTMLButtonElement>;
   className?: string;
   type?: "button" | "submit" | "reset";
+
+  // Link support
+  href?: string;
+  download?: string | boolean;
+  target?: string;
+  rel?: string;
 }
 
 interface ShaderProps {
@@ -167,9 +173,13 @@ const SpecularButton = ({
   onClick,
   className = "",
   type = "button",
+  href,
+  download,
+  target,
+  rel,
 }: SpecularButtonProps) => {
 
-const btnRef = useRef<HTMLButtonElement>(null);
+const btnRef = useRef<HTMLElement>(null);
 const fxRef = useRef<HTMLSpanElement>(null);
 
 const propsRef = useRef<ShaderProps>({
@@ -206,7 +216,6 @@ useEffect(() => {
 
   if (!btn || !fx) return;
 
-    if (!btn || !fx) return;
 
     const dpr = window.devicePixelRatio || 1;
 
@@ -653,38 +662,70 @@ useEffect(() => {
         }
       `}</style>
 
-      <button
-        ref={btnRef}
-        type={type}
-        disabled={disabled}
-        onClick={onClick}
-        className={`specular-button specular-button--${size}${
-          className
-            ? ` ${className}`
-            : ""
-        }`}
-        style={
-          {
-            "--sb-radius": `${radius}px`,
-            "--sb-tint": tint,
-            "--sb-tint-opacity":
-              tintOpacity,
-            "--sb-blur": `${blur}px`,
-            "--sb-text-color":
-              textColor,
-          } as CSSProperties
-        }
-      >
-        <span
-          ref={fxRef}
-          className="specular-button__fx"
-          aria-hidden="true"
-        />
+      {href ? (
+            <a
+              ref={btnRef as React.RefObject<HTMLAnchorElement>}
+              href={href}
+              download={download}
+              target={target}
+              rel={rel}
+              className={`specular-button specular-button--${size}${
+                className
+                  ? ` ${className}`
+                  : ""
+              }`}
+              style={
+                {
+                  "--sb-radius": `${radius}px`,
+                  "--sb-tint": tint,
+                  "--sb-tint-opacity": tintOpacity,
+                  "--sb-blur": `${blur}px`,
+                  "--sb-text-color": textColor,
+                } as CSSProperties
+              }
+            >
+              <span
+                ref={fxRef}
+                className="specular-button__fx"
+                aria-hidden="true"
+              />
 
-        <span className="specular-button__label">
-          {children}
-        </span>
-      </button>
+              <span className="specular-button__label">
+                {children}
+              </span>
+            </a>
+          ) : (
+            <button
+              ref={btnRef as React.RefObject<HTMLButtonElement>}
+              type={type}
+              disabled={disabled}
+              onClick={onClick}
+              className={`specular-button specular-button--${size}${
+                className
+                  ? ` ${className}`
+                  : ""
+              }`}
+              style={
+                {
+                  "--sb-radius": `${radius}px`,
+                  "--sb-tint": tint,
+                  "--sb-tint-opacity": tintOpacity,
+                  "--sb-blur": `${blur}px`,
+                  "--sb-text-color": textColor,
+                } as CSSProperties
+              }
+            >
+              <span
+                ref={fxRef}
+                className="specular-button__fx"
+                aria-hidden="true"
+              />
+
+              <span className="specular-button__label">
+                {children}
+              </span>
+            </button>
+          )}
     </>
   );
 };
