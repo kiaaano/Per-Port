@@ -30,65 +30,48 @@ const StarBorder = <T extends React.ElementType = "button">({
 
   return (
     <>
-      <style>
-        {`
-          @keyframes star-border-top {
-            0% {
-              transform: translateX(-120%);
-              opacity: 0;
+        <style>
+          {`
+            @keyframes star-border-shine {
+              0% {
+                transform: translateX(var(--start));
+                opacity: 0;
+              }
+
+              15% {
+                opacity: 1;
+              }
+
+              50% {
+                transform: translateX(var(--middle));
+                opacity: 1;
+              }
+
+              85% {
+                opacity: 1;
+              }
+
+              100% {
+                transform: translateX(var(--end));
+                opacity: 0;
+              }
             }
 
-            15% {
-              opacity: 1;
+            .star-border-top {
+              animation: star-border-shine linear infinite;
+              --start: -120%;
+              --middle: 260%;
+              --end: 400%;
             }
 
-            50% {
-              opacity: 1;
+            .star-border-bottom {
+              animation: star-border-shine linear infinite;
+              --start: 400%;
+              --middle: 40%;
+              --end: -120%;
             }
-
-            85% {
-              opacity: 1;
-            }
-
-            100% {
-              transform: translateX(220%);
-              opacity: 0;
-            }
-          }
-
-          @keyframes star-border-bottom {
-            0% {
-              transform: translateX(220%);
-              opacity: 0;
-            }
-
-            15% {
-              opacity: 1;
-            }
-
-            50% {
-              opacity: 1;
-            }
-
-            85% {
-              opacity: 1;
-            }
-
-            100% {
-              transform: translateX(-120%);
-              opacity: 0;
-            }
-          }
-
-          .star-border-top {
-            animation: star-border-top linear infinite;
-          }
-
-          .star-border-bottom {
-            animation: star-border-bottom linear infinite;
-          }
-        `}
-      </style>
+          `}
+        </style>
 
       <Component
         className={`relative inline-block overflow-hidden rounded-full ${className}`}
@@ -119,7 +102,7 @@ const StarBorder = <T extends React.ElementType = "button">({
 
             {/* Animated bottom streak */}
             <div
-            className="star-border-bottom pointer-events-none absolute bottom-0 right-0 z-[2] h-[2px] w-[28%] rounded-full"
+            className="star-border-bottom pointer-events-none absolute bottom-0 left-0 z-[2] h-[2px] w-[28%] rounded-full"
             style={{
             background: `linear-gradient(
                 90deg,
