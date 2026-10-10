@@ -1,20 +1,49 @@
 import { Mail, ArrowUpRight } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
+import GradientWaves from "../reactbits/GradientWaves";
 
 function Contact() {
   return (
     <section
       id="contact"
-      className="relative overflow-hidden border-t border-slate-800 bg-slate-950 py-28"
+      className="relative isolate overflow-hidden border-t border-slate-800 bg-slate-950 py-28"
     >
       {/* Background glow */}
-      <div className="pointer-events-none absolute inset-0">
+      <div className="pointer-events-none absolute inset-0 z-0">
         <div className="absolute left-1/4 top-0 h-96 w-96 -translate-x-1/2 rounded-full bg-blue-500/10 blur-3xl" />
 
         <div className="absolute bottom-0 right-0 h-96 w-96 rounded-full bg-cyan-500/5 blur-3xl" />
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-6">
+      {/* Gradient Waves Background */}
+      <div className="absolute inset-0 z-0">
+        <GradientWaves
+          className="h-full w-full"
+          horizonColor="#2563EB"
+          waveColor="#60A5FA"
+          crestColor="#DBEAFE"
+          speed={0.25}
+          amplitude={2.5}
+          waveScale={0.6}
+          waveRatio={0.9}
+          swell={35}
+          turbulence={20}
+          tilt={90}
+          zoom={1}
+          height={.5}
+          fogDepth={15}
+          detail="medium"
+          brightness={1.2}
+          opacity={2}
+          mouseInteraction={true}
+          parallaxStrength={0.1}
+          grain
+          grainIntensity={0.03}
+        />
+      </div>
+
+      {/* Contact content */}
+      <div className="relative z-10 mx-auto max-w-7xl px-6">
         {/* Heading */}
         <div className="max-w-3xl">
           <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-400">
@@ -36,20 +65,19 @@ function Contact() {
 
         {/* Contact options */}
         <div className="mt-14 grid gap-5 md:grid-cols-3">
-          
           {/* Email */}
           <a
-            href="mailto:your-email@example.com"
-           className="group relative overflow-hidden rounded-2xl border border-slate-800/80 bg-slate-900/40 p-7 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1.5 hover:border-blue-500/40 hover:bg-slate-900/70 hover:shadow-2xl hover:shadow-blue-500/5"
+            href="mailto:kianterrence0616@gmail.com"
+            className="group relative overflow-hidden rounded-2xl border border-slate-800/80 bg-slate-900/40 p-7 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1.5 hover:border-blue-500/40 hover:bg-slate-900/70 hover:shadow-2xl hover:shadow-blue-500/5"
           >
             <div className="flex items-start justify-between">
               <div>
                 <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-xl border border-slate-800 bg-slate-950 text-blue-400 shadow-lg shadow-blue-500/5 transition-all duration-300 group-hover:border-blue-500/40 group-hover:bg-blue-500/10 group-hover:shadow-blue-500/10">
                   <Mail
-                      size={20}
-                      strokeWidth={1.8}
-                      className="transition-transform duration-300 group-hover:scale-110"
-                    />
+                    size={20}
+                    strokeWidth={1.8}
+                    className="transition-transform duration-300 group-hover:scale-110"
+                  />
                 </div>
 
                 <p className="text-sm font-medium text-slate-500">
@@ -68,7 +96,7 @@ function Contact() {
               />
             </div>
 
-            <div className="absolute -bottom-12 -right-12 h-24 w-24 rounded-full bg-blue-500/10 blur-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+            <div className="absolute -bottom-12 -right-12 h-24 w-24 rounded-full bg-blue-500/10 opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100" />
           </a>
 
           {/* GitHub */}
@@ -82,9 +110,9 @@ function Contact() {
               <div>
                 <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-xl border border-slate-800 bg-slate-950 text-blue-400 shadow-lg shadow-blue-500/5 transition-all duration-300 group-hover:border-blue-500/40 group-hover:bg-blue-500/10 group-hover:shadow-blue-500/10">
                   <FaGithub
-                      size={20}
-                      className="transition-transform duration-300 group-hover:scale-110"
-                    />
+                    size={20}
+                    className="transition-transform duration-300 group-hover:scale-110"
+                  />
                 </div>
 
                 <p className="text-sm font-medium text-slate-500">
@@ -103,7 +131,7 @@ function Contact() {
               />
             </div>
 
-            <div className="absolute -bottom-12 -right-12 h-24 w-24 rounded-full bg-blue-500/10 blur-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+            <div className="absolute -bottom-12 -right-12 h-24 w-24 rounded-full bg-blue-500/10 opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100" />
           </a>
 
           {/* LinkedIn */}
@@ -117,9 +145,9 @@ function Contact() {
               <div>
                 <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-xl border border-slate-800 bg-slate-950 text-blue-400 shadow-lg shadow-blue-500/5 transition-all duration-300 group-hover:border-blue-500/40 group-hover:bg-blue-500/10 group-hover:shadow-blue-500/10">
                   <FaLinkedin
-                      size={20}
-                      className="transition-transform duration-300 group-hover:scale-110"
-                    />
+                    size={20}
+                    className="transition-transform duration-300 group-hover:scale-110"
+                  />
                 </div>
 
                 <p className="text-sm font-medium text-slate-500">
@@ -131,14 +159,16 @@ function Contact() {
                 </p>
               </div>
 
-              
+              <ArrowUpRight
+                size={20}
+                strokeWidth={1.8}
+                className="text-slate-600 transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-blue-400"
+              />
             </div>
 
-            <div className="absolute -bottom-12 -right-12 h-24 w-24 rounded-full bg-blue-500/10 blur-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+            <div className="absolute -bottom-12 -right-12 h-24 w-24 rounded-full bg-blue-500/10 opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100" />
           </a>
         </div>
-
-       
       </div>
     </section>
   );
