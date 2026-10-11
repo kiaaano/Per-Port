@@ -7,6 +7,7 @@ function Navbar() {
 
   const isNavigating = useRef(false);
   const navigationTimeout = useRef<number | null>(null);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,9 +27,7 @@ function Navbar() {
 
           return {
             href: item.href,
-            top:
-              section.getBoundingClientRect().top +
-              window.scrollY,
+            top: section.getBoundingClientRect().top + window.scrollY,
           };
         })
         .filter(Boolean) as {
@@ -47,11 +46,9 @@ function Navbar() {
       }
 
       // Make Contact active at the bottom of the page
-      const viewportBottom =
-        window.scrollY + window.innerHeight;
+      const viewportBottom = window.scrollY + window.innerHeight;
 
-      const documentHeight =
-        document.documentElement.scrollHeight;
+      const documentHeight = document.documentElement.scrollHeight;
 
       if (viewportBottom >= documentHeight - 50) {
         currentSection = "#contact";
@@ -69,9 +66,23 @@ function Navbar() {
     };
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+
+    handleScroll();
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   const handleNavigation = (
     event: React.MouseEvent<HTMLAnchorElement>,
-    href: string
+    href: string,
   ) => {
     if (!href.startsWith("#")) return;
 
@@ -106,30 +117,33 @@ function Navbar() {
   };
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-800 bg-slate-900">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+    <header
+  className={`fixed inset-x-0 top-0 z-50 px-4 transition-all duration-500 ${
+    isScrolled ? "pt-4" : "pt-0"
+  }`}
+>
+  <nav
+    className={`mx-auto flex items-center justify-between rounded-full border px-6 py-4 transition-all duration-500 ${
+      isScrolled
+        ? "max-w-5xl border-slate-700/60 bg-slate-900/60 shadow-lg shadow-black/20 backdrop-blur-md"
+        : "max-w-7xl border-transparent bg-transparent"
+    }`}
+  >
         {/* Logo */}
-        <a
-  href="/"
-  className="group font-mono text-lg tracking-tight"
->
-  <span className="font-normal text-slate-100">
-    &lt;
-  </span>
+        <a href="/" className="group font-mono text-lg tracking-tight">
+          <span className="font-normal text-slate-100">&lt;</span>
 
-<GradientText
-  colors={["#1D4ED8", "#3B82F6", "#60A5FA"]}
-  animationSpeed={3}
-  showBorder={false}
-  className="!text-2xl !font-black"
->
-  kian.dev
-</GradientText>
+          <GradientText
+            colors={["#1D4ED8", "#3B82F6", "#60A5FA"]}
+            animationSpeed={3}
+            showBorder={false}
+            className="!text-2xl !font-black"
+          >
+            kian.dev
+          </GradientText>
 
-  <span className="font-normal text-slate-100">
-    /&gt;
-  </span>
-</a>
+          <span className="font-normal text-slate-100">/&gt;</span>
+        </a>
 
         {/* Navigation */}
         <ul className="hidden items-center gap-8 text-slate-300 md:flex">
@@ -137,9 +151,7 @@ function Navbar() {
             <li key={item.title}>
               <a
                 href={item.href}
-                onClick={(event) =>
-                  handleNavigation(event, item.href)
-                }
+                onClick={(event) => handleNavigation(event, item.href)}
                 className={`relative py-1 transition-colors duration-300 hover:text-blue-400 ${
                   activeSection === item.href
                     ? "text-blue-400"
@@ -150,9 +162,7 @@ function Navbar() {
 
                 <span
                   className={`absolute bottom-0 left-0 h-px bg-blue-400 transition-all duration-300 ${
-                    activeSection === item.href
-                      ? "w-full"
-                      : "w-0"
+                    activeSection === item.href ? "w-full" : "w-0"
                   }`}
                 />
               </a>
