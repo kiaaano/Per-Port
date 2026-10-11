@@ -1,5 +1,6 @@
 import { projects } from "../../data/projects";
 import SpotlightCard from "../reactbits/SpotlightCard";
+import Reveal from "../animations/Reveal";
 
 function Proj() {
   return (
@@ -10,7 +11,7 @@ function Proj() {
       <div className="mx-auto max-w-6xl">
 
         {/* Section heading */}
-        <div className="max-w-2xl">
+        <Reveal className="max-w-2xl">
           <div className="flex items-center gap-3">
             <span className="h-px w-8 bg-blue-400" />
 
@@ -28,14 +29,18 @@ function Proj() {
             A selection of projects that showcase my experience in web
             development, software development, and emerging technologies.
           </p>
-        </div>
+        </Reveal>
 
         {/* Project cards */}
         <div className="relative mt-14 grid gap-6 md:grid-cols-2">
           <div className="pointer-events-none absolute -inset-10 -z-10 rounded-3xl bg-blue-500/5 blur-3xl" />
-          {projects.map((project, index) => (
+         {projects.map((project, index) => (
+          <Reveal
+            key={project.title}
+            delay={index * 0.15}
+            className="h-full"
+          >
             <SpotlightCard
-              key={project.title}
               spotlightColor="rgba(59, 130, 246, 0.15)"
               className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/40 transition-all duration-300 hover:-translate-y-1 hover:border-blue-500/40"
             >
@@ -113,6 +118,7 @@ function Proj() {
 
               </div>
             </SpotlightCard>
+             </Reveal>
           ))}
         </div>
 

@@ -4,6 +4,7 @@ import Contact from "./components/sections/Contact";
 import StarBorder from "./components/reactbits/StarBorder";
 import { ArrowUpRight } from "lucide-react";
 import { useEffect, useState } from "react";
+import Lenis from "lenis";
 
 function App() {
   const [showBackToTop, setShowBackToTop] = useState(false);
@@ -19,6 +20,16 @@ function App() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  useEffect(() => {
+  const lenis = new Lenis({
+    autoRaf: true,
+  });
+
+  return () => {
+    lenis.destroy();
+  };
+}, []);
 
   const scrollToTop = () => {
     window.scrollTo({
