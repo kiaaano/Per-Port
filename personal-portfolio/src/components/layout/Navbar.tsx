@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import navigation from "../../data/navigation";
 import GradientText from "../reactbits/GradientText";
+import { getLenis } from "../../lib/lenis";
 
 function Navbar() {
   const [activeSection, setActiveSection] = useState("");
@@ -104,11 +105,21 @@ function Navbar() {
       window.clearTimeout(navigationTimeout.current);
     }
 
-    // Smooth scroll
-    section.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
+    const lenis = getLenis();
+
+    if (lenis) {
+      lenis.scrollTo(section as HTMLElement, {
+        offset: -80,
+        duration: 1,
+      });
+    } else {
+      section.scrollIntoView({
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? "auto"
+        : "smooth",
+        block: "start",
+      });
+    }
 
     // Wait for the smooth scrolling to finish
     navigationTimeout.current = window.setTimeout(() => {

@@ -1,5 +1,6 @@
 import certifications from "../../data/certifications";
 import BorderGlow from "../reactbits/BorderGlow";
+import Reveal from "../animations/Reveal";
 
 const categoryBadgeStyles: Record<string, string> = {
   Networking: "border-blue-400/30 bg-blue-400/10 text-blue-300",
@@ -38,7 +39,7 @@ function Certifications() {
         {/* Certifications */}
         <div className="mt-16 grid gap-6 md:grid-cols-2">
           {certifications.map((certification) => (
-              <div
+              <Reveal
                 key={certification.title}
                  className="group relative h-full"
               >
@@ -94,7 +95,7 @@ function Certifications() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </Reveal>
             ))}
         </div>
       </div>

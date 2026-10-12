@@ -5,9 +5,7 @@ import SpecularButton from "../reactbits/SpecularButton";
 
 function Hero() {
   return (
-    <section className="relative flex min-h-[calc(100vh-73px)] items-center overflow-hidden bg-slate-950">
-      {/* Animated background */}
-      <div className="absolute inset-0 h-full w-full opacity-50">
+  <section className="relative flex min-h-screen items-center overflow-hidden bg-slate-950 pt-[73px]">      <div className="absolute inset-0 h-full w-full opacity-50">
           <Scanner
             color1="#1D4ED8"
             color2="#3B82F6"

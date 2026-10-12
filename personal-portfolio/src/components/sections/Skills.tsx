@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import skills from "../../data/skills";
 import { ChevronDown } from "lucide-react";
-
+import Reveal from "../animations/Reveal";
 
 import { VscVscode } from "react-icons/vsc";
 import ShinyText from "../reactbits/ShinyText";
@@ -50,7 +50,7 @@ const [openCategory, setOpenCategory] = useState<string | null>(null);
     >
       <div className="mx-auto max-w-6xl">
         {/* Section Header */}
-        <div className="mb-16">
+        <Reveal className="mb-16">
           <p className="mb-3 text-sm font-medium uppercase tracking-[0.3em] text-blue-400">
             Skills
           </p>
@@ -58,7 +58,7 @@ const [openCategory, setOpenCategory] = useState<string | null>(null);
           <h2 className="text-3xl font-semibold tracking-tight text-white md:text-4xl">
             Technologies I work with
           </h2>
-        </div>
+        </Reveal>
 
         {/* Skill Categories */}
         <div>
@@ -74,7 +74,7 @@ const [openCategory, setOpenCategory] = useState<string | null>(null);
               }));
 
             return (
-              <div
+              <Reveal
                 key={skillGroup.category}
                 className="py-12"
               >
@@ -148,7 +148,7 @@ const [openCategory, setOpenCategory] = useState<string | null>(null);
                         />
                       </div>
                     )}
-              </div>
+              </Reveal>
             );
           })}
         </div>
