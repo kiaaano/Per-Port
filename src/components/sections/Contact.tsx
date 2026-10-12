@@ -1,6 +1,7 @@
 import { Mail, ArrowUpRight } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import GradientWaves from "../reactbits/GradientWaves";
+import Reveal from "../animations/Reveal";
 
 function Contact() {
   return (
@@ -66,9 +67,10 @@ function Contact() {
         {/* Contact options */}
         <div className="mt-14 grid gap-5 md:grid-cols-3">
           {/* Email */}
+          <Reveal className="h-full">
           <a
             href="mailto:kianterrence0616@gmail.com"
-            className="group relative overflow-hidden rounded-2xl border border-slate-800/80 bg-slate-900/40 p-7 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1.5 hover:border-blue-500/40 hover:bg-slate-900/70 hover:shadow-2xl hover:shadow-blue-500/5"
+            className="group relative block h-full overflow-hidden rounded-2xl border border-slate-800/80 bg-slate-900/40 p-7 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1.5 hover:border-blue-500/40 hover:bg-slate-900/70 hover:shadow-2xl hover:shadow-blue-500/5"
           >
             <div className="flex items-start justify-between">
               <div>
@@ -98,13 +100,15 @@ function Contact() {
 
             <div className="absolute -bottom-12 -right-12 h-24 w-24 rounded-full bg-blue-500/10 opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100" />
           </a>
+          </Reveal>
 
           {/* GitHub */}
+          <Reveal delay={0.15} className="h-full">
           <a
             href="https://github.com/kiaaano"
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative overflow-hidden rounded-2xl border border-slate-800/80 bg-slate-900/40 p-7 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1.5 hover:border-blue-500/40 hover:bg-slate-900/70 hover:shadow-2xl hover:shadow-blue-500/5"
+            className="group relative block h-full overflow-hidden rounded-2xl border border-slate-800/80 bg-slate-900/40 p-7 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1.5 hover:border-blue-500/40 hover:bg-slate-900/70 hover:shadow-2xl hover:shadow-blue-500/5"
           >
             <div className="flex items-start justify-between">
               <div>
@@ -133,13 +137,15 @@ function Contact() {
 
             <div className="absolute -bottom-12 -right-12 h-24 w-24 rounded-full bg-blue-500/10 opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100" />
           </a>
+          </Reveal>
 
           {/* LinkedIn */}
+          <Reveal delay={0.3} className="h-full">
           <a
             href="https://www.linkedin.com/in/kian-terrence-atienza-20411a368/"
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative overflow-hidden rounded-2xl border border-slate-800/80 bg-slate-900/40 p-7 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1.5 hover:border-blue-500/40 hover:bg-slate-900/70 hover:shadow-2xl hover:shadow-blue-500/5"
+            className="group relative block h-full overflow-hidden rounded-2xl border border-slate-800/80 bg-slate-900/40 p-7 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1.5 hover:border-blue-500/40 hover:bg-slate-900/70 hover:shadow-2xl hover:shadow-blue-500/5"
           >
             <div className="flex items-start justify-between">
               <div>
@@ -168,6 +174,7 @@ function Contact() {
 
             <div className="absolute -bottom-12 -right-12 h-24 w-24 rounded-full bg-blue-500/10 opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100" />
           </a>
+          </Reveal>
         </div>
       </div>
     </section>

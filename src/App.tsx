@@ -5,6 +5,8 @@ import StarBorder from "./components/reactbits/StarBorder";
 import { ArrowUpRight } from "lucide-react";
 import { useEffect, useState } from "react";
 import Lenis from "lenis";
+import { setLenis } from "./lib/lenis";
+import { MotionConfig } from "motion/react";
 
 function App() {
   const [showBackToTop, setShowBackToTop] = useState(false);
@@ -22,12 +24,21 @@ function App() {
   }, []);
 
   useEffect(() => {
+    const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
+  if (prefersReducedMotion) return;
+  
   const lenis = new Lenis({
     autoRaf: true,
   });
 
+  setLenis(lenis);
+
   return () => {
     lenis.destroy();
+    setLenis(null);
   };
 }, []);
 
@@ -39,7 +50,7 @@ function App() {
   };
 
   return (
-    <>
+    <MotionConfig reducedMotion="user">
       <Home />
       <Proj />
       <Contact />
@@ -94,7 +105,7 @@ function App() {
         </StarBorder>
 
     </div>
-    </>
+    </MotionConfig>
   );
 }
 

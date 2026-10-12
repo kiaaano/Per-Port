@@ -5,7 +5,7 @@ export const projects = [
       "A modern personal portfolio designed to showcase my skills, projects, certifications, and experience as a junior software and web developer.",
     technologies: ["React", "TypeScript", "Tailwind CSS", "Vite"],
     image: "/projects/portcap.png",
-    github: "https://github.com/Pokemoan/Per-Port",
+    github: "https://github.com/kiaaano/Per-Port",
     demo: "https://kiandev.vercel.app/",
   },
 
@@ -22,6 +22,6 @@ export const projects = [
     ],
     image: "/projects/water.png",
     github: "",
-    demo: "https://water-monitoring-dashboard-six.vercel.app/",
+    demo: "https://water-iot-dashboard.vercel.app/",
   },
 ];
