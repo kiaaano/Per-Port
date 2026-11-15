@@ -1,129 +1,218 @@
+import { createPortal } from "react-dom";
+import { useState } from "react";
 import { projects } from "../../data/projects";
-import SpotlightCard from "../reactbits/SpotlightCard";
 import Reveal from "../animations/Reveal";
+import CircularCarousel from "../reactbits/CircularCarousel";
+import TiltedCard from "../reactbits/TiltedCard";
+
+const placeholderItems = [
+  {
+    src: "/projects/project-placeholder-01.svg",
+    alt: "Future project placeholder",
+    title: "Future Project 01",
+    subtitle: "Coming soon",
+  },
+  {
+    src: "/projects/project-placeholder-02.svg",
+    alt: "Future project placeholder",
+    title: "Future Project 02",
+    subtitle: "Coming soon",
+  },
+];
 
 function Proj() {
+  const [selectedProjectIndex, setSelectedProjectIndex] = useState<number | null>(null);
+  const [pendingFlipIndex, setPendingFlipIndex] = useState<number | null>(null);
+  const [isFlipped, setIsFlipped] = useState(false);
+  const selectedProject =
+    selectedProjectIndex === null ? null : projects[selectedProjectIndex];
+  const carouselItems = [
+    ...projects.map((project) => ({
+      src: project.image,
+      alt: `${project.title} preview`,
+      title: project.title,
+      subtitle: project.technologies.slice(0, 2).join(" · "),
+    })),
+    ...placeholderItems,
+  ];
+
+  const selectProject = (index: number) => {
+    setSelectedProjectIndex(index);
+    setPendingFlipIndex(index);
+    setIsFlipped(false);
+  };
+
+  const handleCarouselSettled = (index: number) => {
+    if (pendingFlipIndex === index) {
+      setPendingFlipIndex(null);
+      setIsFlipped(true);
+    }
+  };
+
+  const resumeCarousel = () => {
+    setSelectedProjectIndex(null);
+    setPendingFlipIndex(null);
+    setIsFlipped(false);
+  };
+
   return (
-    <section
-      id="projects"
-      className="relative bg-slate-950 px-6 py-24 text-white lg:px-12"
-    >
-      <div className="mx-auto max-w-6xl">
+    <>
+      <section
+        id="projects"
+        className="relative bg-slate-950 px-4 pt-12 pb-40 text-white lg:px-8"
+      >
+        <div className="mx-auto max-w-7xl">
+          <Reveal className="max-w-2xl">
+            <div className="flex items-center gap-3">
+              <span className="h-px w-8 bg-blue-400" />
 
-        {/* Section heading */}
-        <Reveal className="max-w-2xl">
-          <div className="flex items-center gap-3">
-            <span className="h-px w-8 bg-blue-400" />
+              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-blue-400">
+                Selected Work
+              </p>
+            </div>
 
-            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-blue-400">
-              Selected Work
+            <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
+              Projects built with{" "}
+              <span className="text-slate-400">purpose.</span>
+            </h2>
+
+            <p className="mt-5 text-sm leading-7 text-slate-400 md:text-base">
+              A selection of projects that showcase my experience in web
+              development, software development, and emerging technologies.
             </p>
-          </div>
+          </Reveal>
 
-          <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
-            Projects built with{" "}
-            <span className="text-slate-400">purpose.</span>
-          </h2>
+          <Reveal className="mt-8">
+            <div className="relative h-[440px] sm:h-[480px]">
+              <CircularCarousel
+                items={carouselItems}
+                preset="cylinder"
+                cardWidth={520}
+                aspectRatio={16 / 9}
+                gap={45}
+                speed={6}
+                direction="right"
+                momentum={0.85}
+                autoplay={selectedProjectIndex === null ? "drift" : "off"}
+                pauseOnHover={false}
+                captions
+                tilt={-5}
+                fadeColor="#020617"
+                cornerRadius={20}
+                onItemClick={(_, index) => {
+                  if (index < projects.length) selectProject(index);
+                }}
+                onSettled={handleCarouselSettled}
+              />
+            </div>
+          </Reveal>
+        </div>
+      </section>
 
-          <p className="mt-5 text-sm leading-7 text-slate-400 md:text-base">
-            A selection of projects that showcase my experience in web
-            development, software development, and emerging technologies.
-          </p>
-        </Reveal>
-
-        {/* Project cards */}
-        <div className="relative mt-14 grid gap-6 md:grid-cols-2">
-          <div className="pointer-events-none absolute -inset-10 -z-10 rounded-3xl bg-blue-500/5 blur-3xl" />
-         {projects.map((project, index) => (
-          <Reveal
-            key={project.title}
-            delay={index * 0.15}
-            className="h-full"
-          >
-            <SpotlightCard
-              spotlightColor="rgba(59, 130, 246, 0.15)"
-              className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/40 transition-all duration-300 hover:-translate-y-1 hover:border-blue-500/40"
-            >
-
-              {/* Project Image */}
-              <a
-                href={project.demo}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block"
-              >
-                <div className="relative overflow-hidden border-b border-slate-800 bg-slate-900">
-                  <img
-                    src={project.image}
-                    alt={`${project.title} preview`}
-                    className="block h-auto w-full transition-transform duration-500 group-hover:scale-105"
-                  />
-                </div>
-              </a>
-
-              {/* Project Content */}
-              <div className="flex flex-1 flex-col p-6">
-
-                {/* Number */}
-                <p className="text-sm font-medium text-blue-400">
-                  {String(index + 1).padStart(2, "0")}
+      {selectedProject && selectedProjectIndex !== null && createPortal(
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/55 p-4 backdrop-blur-md"
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${selectedProject.title} project details`}
+          onClick={resumeCarousel}
+          onKeyDown={(event) => {
+            if (event.key === "Escape") resumeCarousel();
+          }}
+        >
+          <TiltedCard
+            key={selectedProjectIndex}
+            imageSrc={selectedProject.image}
+            altText={`${selectedProject.title} project preview`}
+            captionText={`${selectedProject.title} project details`}
+            containerHeight="min(75vw, 520px)"
+            containerWidth="min(95vw, 800px)"
+            imageHeight="min(75vw, 520px)"
+            imageWidth="min(95vw, 800px)"
+            scaleOnHover={1.02}
+            rotateAmplitude={8}
+            showTooltip={false}
+            flipOnClick={pendingFlipIndex === null}
+            flipped={isFlipped}
+            onFlip={setIsFlipped}
+            onClick={(event) => event.stopPropagation()}
+            radius={20}
+            perspective={1000}
+            glare={0.25}
+            shadow={0.55}
+            parallax={0.4}
+            gyroscope={false}
+            intro
+            backContent={
+              <div className="flex h-full flex-col overflow-y-auto bg-slate-950/95 p-5 text-left text-white sm:p-7">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-400">
+                  Project {String(selectedProjectIndex + 1).padStart(2, "0")} /{" "}
+                  {String(projects.length).padStart(2, "0")}
                 </p>
 
-                {/* Title */}
-                <h3 className="mt-3 text-2xl font-semibold leading-tight tracking-tight">
-                  {project.title}
+                <h3 className="mt-3 text-xl font-semibold leading-tight sm:text-2xl">
+                  {selectedProject.title}
                 </h3>
 
-                {/* Description */}
-                <p className="mt-4 text-sm leading-7 text-slate-400">
-                  {project.description}
+                <p className="mt-3 text-sm leading-6 text-slate-300">
+                  {selectedProject.description}
                 </p>
 
-                {/* Technologies */}
-                <div className="mt-6 flex flex-wrap gap-2">
-                  {project.technologies.map((technology) => (
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {selectedProject.technologies.map((technology) => (
                     <span
                       key={technology}
-                      className="rounded-full border border-slate-800 bg-slate-950/50 px-3 py-1 text-xs text-slate-400"
+                      className="rounded-full border border-slate-800 bg-slate-900 px-3 py-1 text-xs text-slate-300"
                     >
                       {technology}
                     </span>
                   ))}
                 </div>
 
-                {/* Links */}
-                <div className="mt-auto flex gap-3 pt-8">
-                  {project.demo && (
+                <div className="mt-5 flex flex-wrap gap-3">
+                  {selectedProject.demo && (
                     <a
-                      href={project.demo}
+                      href={selectedProject.demo}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="rounded-lg bg-white px-4 py-2 text-sm font-medium text-slate-950 transition-all duration-300 hover:-translate-y-0.5 hover:bg-slate-200"
+                      onClick={(event) => event.stopPropagation()}
+                      className="rounded-lg bg-white px-4 py-2 text-sm font-medium text-slate-950 transition-colors hover:bg-slate-200"
                     >
                       Live Demo →
                     </a>
                   )}
 
-                  {project.github && (
+                  {selectedProject.github && (
                     <a
-                      href={project.github}
+                      href={selectedProject.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="rounded-lg border border-slate-700 px-4 py-2 text-sm font-medium text-slate-300 transition-all duration-300 hover:-translate-y-0.5 hover:border-blue-500/50 hover:text-white"
+                      onClick={(event) => event.stopPropagation()}
+                      className="rounded-lg border border-slate-700 px-4 py-2 text-sm font-medium text-slate-300 transition-colors hover:border-blue-500/50 hover:text-white"
                     >
                       GitHub →
                     </a>
                   )}
                 </div>
-
               </div>
-            </SpotlightCard>
-             </Reveal>
-          ))}
-        </div>
-
-      </div>
-    </section>
+            }
+          >
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[3] bg-gradient-to-t from-slate-950/95 via-slate-950/45 to-transparent p-5 pt-20 text-left text-white">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-300">
+                Selected project
+              </p>
+              <h3 className="mt-2 text-xl font-semibold leading-tight sm:text-2xl">
+                {selectedProject.title}
+              </h3>
+              <p className="mt-2 text-sm text-slate-300">
+                Click to reveal project details
+              </p>
+            </div>
+          </TiltedCard>
+        </div>,
+        document.body,
+      )}
+    </>
   );
 }
 

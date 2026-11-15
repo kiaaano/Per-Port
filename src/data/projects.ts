@@ -24,4 +24,21 @@ export const projects = [
     github: "",
     demo: "https://water-iot-dashboard.vercel.app/",
   },
+
+  {
+    title: "Cliniconnect",
+    description:
+      "A multi-specialty clinic management and online booking platform designed to help clinics manage appointments and streamline patient care.",
+    technologies: [
+      "Angular",
+      "TypeScript",
+      "SCSS",
+      "NestJS",
+      "MongoDB",
+      "Mongoose",
+    ],
+    image: "/projects/cliniconnect.webp",
+    github: "",
+    demo: "https://cliniconnect.care/",
+  },
 ];
