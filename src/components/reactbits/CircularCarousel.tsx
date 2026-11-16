@@ -39,6 +39,7 @@ export interface CircularCarouselProps {
   innerShade?: number;
   cornerRadius?: number;
   captions?: boolean;
+  centerOverlay?: React.ReactNode;
   onChange?: (index: number) => void;
   onItemClick?: (item: CircularCarouselItem, index: number) => void;
   onSettled?: (index: number) => void;
@@ -272,7 +273,10 @@ const OVERLAP = 2.5;
 const DRAG_THRESHOLD = 5;
 const SPRING = 118;
 const SETTLE_SPEED = 9;
-const CAPTION_SPACE = 76;
+const CAPTION_SPACE = 56;
+const CAPTION_BASE_OFFSET = 52;
+const CENTER_OVERLAY_WIDTH_EXTENT = 1;
+const CENTER_OVERLAY_HEIGHT_EXTENT = 1.6;
 const SWAP_LENGTH = 700;
 const SWAP_SPREAD = 420;
 const TO_RAD = Math.PI / 180;
@@ -357,6 +361,7 @@ const CircularCarousel = ({
   innerShade = 0.6,
   cornerRadius = 12,
   captions = false,
+  centerOverlay,
   onChange,
   onItemClick,
   onSettled,
@@ -412,6 +417,8 @@ const CircularCarousel = ({
   const stageRef = useRef<HTMLDivElement>(null);
   const cameraRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
+  const hasCenterOverlay = centerOverlay != null;
+  const centerOverlayRef = useRef(hasCenterOverlay);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const wakeRef = useRef<() => void>(() => {});
   const measureRef = useRef<() => void>(() => {});
@@ -618,6 +625,18 @@ const CircularCarousel = ({
       state.fit = fit;
       state.shift = -((minY + maxY) / 2) * fit - room / 2;
       state.drop = s.axis === 'x' ? (rect.width / fit) * 0.55 + s.cardW : (rect.height / fit) * 0.55 + s.cardH;
+      if (centerOverlayRef.current) {
+        const depthScale = s.layout.inward ? 1 : s.perspective / (s.perspective + s.radius);
+        const projectionScale = Math.max(fit * depthScale, 0.01);
+        const sourceY = (rect.height / 2 - CAPTION_BASE_OFFSET - state.shift) / projectionScale;
+        const overlayHeight = rect.height * CENTER_OVERLAY_HEIGHT_EXTENT;
+        camera.style.setProperty(
+          '--cc-overlay-width',
+          `${rect.width * CENTER_OVERLAY_WIDTH_EXTENT / projectionScale}px`
+        );
+        camera.style.setProperty('--cc-overlay-height', `${overlayHeight}px`);
+        camera.style.setProperty('--cc-overlay-offset-y', `${sourceY - overlayHeight / 2}px`);
+      }
       stage.style.perspective = `${P}px`;
       stage.style.transform = `translate3d(0, ${state.shift}px, 0) scale(${fit})`;
     };
@@ -848,9 +867,10 @@ const CircularCarousel = ({
   }, []);
 
   useLayoutEffect(() => {
+    centerOverlayRef.current = hasCenterOverlay;
     measureRef.current();
     wakeRef.current();
-  }, [radius, cardW, cardH, tiltValue, perspective, preset, captions, count]);
+  }, [radius, cardW, cardH, tiltValue, perspective, preset, captions, count, hasCenterOverlay]);
 
   useEffect(() => {
     wakeRef.current();
@@ -1103,6 +1123,7 @@ const CircularCarousel = ({
           className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-[450ms] ease-[ease] group-data-[ready]/cc:opacity-100 motion-reduce:transition-none"
         >
           <div ref={cameraRef} className="relative h-0 w-0 [transform-style:preserve-3d]">
+            {centerOverlay}
             <div ref={ringRef} className="absolute left-0 top-0 h-0 w-0 [transform-style:preserve-3d]">
               {list.map((item, index) => (
                 <div
@@ -1126,7 +1147,7 @@ const CircularCarousel = ({
       </div>
       {captions && current && (
         <div
-          className="pointer-events-none absolute inset-x-0 bottom-[22px] flex flex-col items-center gap-1.5 px-4 text-center animate-[circular-carousel-reveal_900ms_ease_both] motion-reduce:animate-none"
+          className="pointer-events-none absolute inset-x-0 bottom-[4px] z-20 flex flex-col items-center gap-1.5 px-4 text-center animate-[circular-carousel-reveal_900ms_ease_both] motion-reduce:animate-none"
           aria-hidden="true"
         >
           <span

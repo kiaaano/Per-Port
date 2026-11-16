@@ -3,6 +3,7 @@ import { useState } from "react";
 import { projects } from "../../data/projects";
 import Reveal from "../animations/Reveal";
 import CircularCarousel from "../reactbits/CircularCarousel";
+import LightRays from "../reactbits/LightRays";
 import TiltedCard from "../reactbits/TiltedCard";
 
 const placeholderItems = [
@@ -59,7 +60,7 @@ function Proj() {
     <>
       <section
         id="projects"
-        className="relative bg-slate-950 px-4 pt-12 pb-40 text-white lg:px-8"
+        className="relative overflow-x-clip bg-slate-950 px-4 pt-12 pb-40 text-white lg:px-8"
       >
         <div className="mx-auto max-w-7xl">
           <Reveal className="max-w-2xl">
@@ -82,9 +83,38 @@ function Proj() {
             </p>
           </Reveal>
 
-          <Reveal className="mt-8">
+          <Reveal className="mt-16">
             <div className="relative h-[440px] sm:h-[480px]">
               <CircularCarousel
+                centerOverlay={
+                  <LightRays
+                    raysOrigin="bottom-center"
+                    raysColor="#60a5fa"
+                    raysSpeed={0.3}
+                    lightSpread={0.68}
+                    rayLength={0.45}
+                    rayDensity={1.6}
+                    raySharpness={1}
+                    glow={0.25}
+                    haze={0}
+                    atmosphere={0.4}
+                    intensity={1.4}
+                    followMouse={false}
+                    cursorShadow={false}
+                    clickPulse={false}
+                    opacity={0.7}
+                    style={{
+                      position: "absolute",
+                      left: 0,
+                      top: 0,
+                      width: "var(--cc-overlay-width)",
+                      height: "var(--cc-overlay-height)",
+                      transform:
+                        "translate(-50%, -50%) translateY(var(--cc-overlay-offset-y))",
+                    }}
+                  />
+                }
+                className="z-10"
                 items={carouselItems}
                 preset="cylinder"
                 cardWidth={520}
