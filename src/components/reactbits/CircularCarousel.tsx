@@ -275,6 +275,7 @@ const SPRING = 118;
 const SETTLE_SPEED = 9;
 const CAPTION_SPACE = 56;
 const CAPTION_BASE_OFFSET = 52;
+const MOBILE_OVERLAY_SCENE_OFFSET = 28;
 const CENTER_OVERLAY_WIDTH_EXTENT = 1;
 const CENTER_OVERLAY_HEIGHT_EXTENT = 1.6;
 const SWAP_LENGTH = 700;
@@ -577,7 +578,11 @@ const CircularCarousel = ({
       const s = settingsRef.current;
       const rect = root.getBoundingClientRect();
       if (!rect.width || !rect.height) return;
-      const room = s.captions ? CAPTION_SPACE : 0;
+      const room = s.captions
+        ? centerOverlayRef.current && rect.width < 640
+          ? 16
+          : CAPTION_SPACE
+        : 0;
       const width = rect.width * 0.94;
       const height = (rect.height - room) * 0.92;
       const P = s.perspective;
@@ -623,12 +628,17 @@ const CircularCarousel = ({
       const spanY = Math.max(maxY - minY, 1);
       const fit = Math.min(1, width / spanX, height / spanY);
       state.fit = fit;
-      state.shift = -((minY + maxY) / 2) * fit - room / 2;
+      const mobileOverlayOffset =
+        centerOverlayRef.current && rect.width < 640
+          ? MOBILE_OVERLAY_SCENE_OFFSET
+          : 0;
+      state.shift = -((minY + maxY) / 2) * fit - room / 2 + mobileOverlayOffset;
       state.drop = s.axis === 'x' ? (rect.width / fit) * 0.55 + s.cardW : (rect.height / fit) * 0.55 + s.cardH;
       if (centerOverlayRef.current) {
         const depthScale = s.layout.inward ? 1 : s.perspective / (s.perspective + s.radius);
         const projectionScale = Math.max(fit * depthScale, 0.01);
-        const sourceY = (rect.height / 2 - CAPTION_BASE_OFFSET - state.shift) / projectionScale;
+        const sourceOffset = rect.width < 640 ? 0 : state.shift;
+        const sourceY = (rect.height / 2 - CAPTION_BASE_OFFSET - sourceOffset) / projectionScale;
         const overlayHeight = rect.height * CENTER_OVERLAY_HEIGHT_EXTENT;
         camera.style.setProperty(
           '--cc-overlay-width',

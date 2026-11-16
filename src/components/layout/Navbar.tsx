@@ -1,14 +1,17 @@
 import { useEffect, useRef, useState } from "react";
+import { Menu, X } from "lucide-react";
 import navigation from "../../data/navigation";
 import GradientText from "../reactbits/GradientText";
 import { getLenis } from "../../lib/lenis";
 
 function Navbar() {
   const [activeSection, setActiveSection] = useState("");
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const isNavigating = useRef(false);
   const navigationTimeout = useRef<number | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -129,26 +132,32 @@ function Navbar() {
 
   return (
     <header
-  className={`fixed inset-x-0 top-0 z-50 px-4 transition-all duration-500 ${
-    isScrolled ? "pt-4" : "pt-0"
-  }`}
->
-  <nav
-    className={`mx-auto flex items-center justify-between rounded-full border px-6 py-4 transition-all duration-500 ${
-      isScrolled
-        ? "max-w-5xl border-slate-700/60 bg-slate-900/60 shadow-lg shadow-black/20 backdrop-blur-md"
-        : "max-w-7xl border-transparent bg-transparent"
-    }`}
-  >
+      className={`fixed inset-x-0 top-0 z-50 px-3 transition-all duration-500 sm:px-4 ${
+        isScrolled ? "pt-2 sm:pt-4" : "pt-0"
+      }`}
+    >
+      <nav
+        onKeyDown={(event) => {
+          if (event.key === "Escape" && isMenuOpen) {
+            setIsMenuOpen(false);
+            menuButtonRef.current?.focus();
+          }
+        }}
+        className={`relative mx-auto flex items-center justify-between rounded-2xl border px-4 py-3 transition-all duration-500 md:rounded-full md:px-6 md:py-4 ${
+          isScrolled || isMenuOpen
+            ? "max-w-5xl border-slate-700/60 bg-slate-900/80 shadow-lg shadow-black/20 backdrop-blur-md"
+            : "max-w-7xl border-transparent bg-slate-950/30 backdrop-blur-sm md:bg-transparent md:backdrop-blur-none"
+        }`}
+      >
         {/* Logo */}
-        <a href="/" className="group font-mono text-lg tracking-tight">
+        <a href="/" className="group font-mono text-lg tracking-tight" onClick={() => setIsMenuOpen(false)}>
           <span className="font-normal text-slate-100">&lt;</span>
 
           <GradientText
             colors={["#1D4ED8", "#3B82F6", "#60A5FA"]}
             animationSpeed={3}
             showBorder={false}
-            className="!text-2xl !font-black"
+            className="!text-xl !font-black sm:!text-2xl"
           >
             kian.dev
           </GradientText>
@@ -156,14 +165,32 @@ function Navbar() {
           <span className="font-normal text-slate-100">/&gt;</span>
         </a>
 
+        <button
+          ref={menuButtonRef}
+          type="button"
+          className="flex h-11 w-11 items-center justify-center rounded-full border border-slate-700/70 text-slate-200 transition-colors hover:border-blue-400/60 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400 md:hidden"
+          aria-label={isMenuOpen ? "Close navigation" : "Open navigation"}
+          aria-expanded={isMenuOpen}
+          aria-controls="primary-navigation"
+          onClick={() => setIsMenuOpen((open) => !open)}
+        >
+          {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+        </button>
+
         {/* Navigation */}
-        <ul className="hidden items-center gap-8 text-slate-300 md:flex">
+        <ul
+          id="primary-navigation"
+          className={`${isMenuOpen ? "flex" : "hidden"} absolute inset-x-0 top-full mt-2 flex-col gap-1 rounded-2xl border border-slate-700/70 bg-slate-900/95 p-2 text-slate-300 shadow-xl shadow-black/30 backdrop-blur-xl md:static md:mt-0 md:flex md:flex-row md:items-center md:gap-8 md:border-0 md:bg-transparent md:p-0 md:shadow-none md:backdrop-blur-none`}
+        >
           {navigation.map((item) => (
             <li key={item.title}>
               <a
                 href={item.href}
-                onClick={(event) => handleNavigation(event, item.href)}
-                className={`relative py-1 transition-colors duration-300 hover:text-blue-400 ${
+                onClick={(event) => {
+                  handleNavigation(event, item.href);
+                  setIsMenuOpen(false);
+                }}
+                className={`relative block rounded-xl px-4 py-3 transition-colors duration-300 hover:bg-slate-800/70 hover:text-blue-400 md:px-0 md:py-1 md:hover:bg-transparent ${
                   activeSection === item.href
                     ? "text-blue-400"
                     : "text-slate-300"

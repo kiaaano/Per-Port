@@ -46,16 +46,16 @@ const [openCategory, setOpenCategory] = useState<string | null>(null);
   return (
     <section
       id="skills"
-      className="border-t border-slate-800 px-6 py-24"
+      className="border-t border-slate-800 px-4 py-16 sm:px-6 sm:py-24"
     >
       <div className="mx-auto max-w-6xl">
         {/* Section Header */}
-        <Reveal className="mb-16">
+        <Reveal className="mb-10 sm:mb-16">
           <p className="mb-3 text-sm font-medium uppercase tracking-[0.3em] text-blue-400">
             Skills
           </p>
 
-          <h2 className="text-3xl font-semibold tracking-tight text-white md:text-4xl">
+          <h2 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl md:text-4xl">
             Technologies I work with
           </h2>
         </Reveal>
@@ -76,7 +76,7 @@ const [openCategory, setOpenCategory] = useState<string | null>(null);
             return (
               <Reveal
                 key={skillGroup.category}
-                className="py-12"
+                className="py-8 sm:py-12"
               >
                 {/* Category Title / Accordion Button */}
                 <button
@@ -87,17 +87,17 @@ const [openCategory, setOpenCategory] = useState<string | null>(null);
                     )
                   }
                   aria-expanded={isOpen}
-                  className="group flex w-full items-center gap-8"
+                  className="group flex w-full items-center gap-2 sm:gap-8"
                 >
                   <div className="h-px flex-1 bg-gradient-to-r from-transparent via-slate-800 to-slate-700 transition-all duration-500 group-hover:via-blue-500/40" />
 
-                  <div className="flex shrink-0 items-center gap-3">
+                  <div className="flex min-w-0 shrink-0 items-center gap-2 sm:gap-3">
                     <ShinyText
                       text={skillGroup.category}
                       speed={3}
                       color="#cbd5e1"
                       shineColor="#ffffff"
-                      className="text-base font-bold uppercase tracking-[0.32em] transition-colors duration-300 group-hover:text-white md:text-lg"
+                      className="text-xs font-bold uppercase tracking-[0.14em] transition-colors duration-300 group-hover:text-white sm:text-base sm:tracking-[0.32em] md:text-lg"
                     />
 
                     <ChevronDown
@@ -135,12 +135,12 @@ const [openCategory, setOpenCategory] = useState<string | null>(null);
 
                     {/* Logo Loop */}
                     {logos.length > 0 && (
-                      <div className="mx-auto mt-12 w-[100%]">
+                      <div className="mx-auto mt-8 w-full sm:mt-12">
                         <LogoLoop
                           logos={logos}
                           speed={30}
-                          logoHeight={34}
-                          gap={120}
+                          logoHeight={28}
+                          gap={64}
                           fadeOut
                           fadeOutColor="#020617"
                           pauseOnHover

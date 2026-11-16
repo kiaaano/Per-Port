@@ -7,7 +7,7 @@ function Contact() {
   return (
     <section
       id="contact"
-      className="relative isolate overflow-hidden border-t border-slate-800 bg-slate-950 py-28"
+      className="relative isolate overflow-hidden border-t border-slate-800 bg-slate-950 py-20 sm:py-28"
     >
       {/* Background glow */}
       <div className="pointer-events-none absolute inset-0 z-0">
@@ -44,33 +44,33 @@ function Contact() {
       </div>
 
       {/* Contact content */}
-      <div className="relative z-10 mx-auto max-w-7xl px-6">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6">
         {/* Heading */}
         <div className="max-w-3xl">
           <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-400">
             Get in touch
           </p>
 
-          <h2 className="mt-5 text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
+          <h2 className="mt-5 text-3xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
             Let's create something{" "}
             <span className="bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
               meaningful.
             </span>
           </h2>
 
-          <p className="mt-6 max-w-2xl text-base leading-8 text-slate-400 sm:text-lg">
+          <p className="mt-5 max-w-2xl text-sm leading-7 text-slate-400 sm:mt-6 sm:text-lg sm:leading-8">
             Whether you have an opportunity, a project idea, or simply want
             to talk about technology, I'd be happy to connect.
           </p>
         </div>
 
         {/* Contact options */}
-        <div className="mt-14 grid gap-5 md:grid-cols-3">
+        <div className="mt-10 grid gap-4 sm:mt-14 sm:gap-5 md:grid-cols-3">
           {/* Email */}
           <Reveal className="h-full">
           <a
             href="mailto:kianterrence0616@gmail.com"
-            className="group relative block h-full overflow-hidden rounded-2xl border border-slate-800/80 bg-slate-900/40 p-7 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1.5 hover:border-blue-500/40 hover:bg-slate-900/70 hover:shadow-2xl hover:shadow-blue-500/5"
+            className="group relative block h-full overflow-hidden rounded-2xl border border-slate-800/80 bg-slate-900/40 p-5 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1.5 hover:border-blue-500/40 hover:bg-slate-900/70 hover:shadow-2xl hover:shadow-blue-500/5 sm:p-7"
           >
             <div className="flex items-start justify-between">
               <div>
@@ -86,7 +86,7 @@ function Contact() {
                   Email
                 </p>
 
-                <p className="mt-3 text-lg font-medium text-white transition-colors duration-300 group-hover:text-blue-400">
+                <p className="mt-3 break-all text-base font-medium text-white transition-colors duration-300 group-hover:text-blue-400 sm:break-normal sm:text-lg">
                   kianterrence0616@gmail.com
                 </p>
               </div>
@@ -108,7 +108,7 @@ function Contact() {
             href="https://github.com/kiaaano"
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative block h-full overflow-hidden rounded-2xl border border-slate-800/80 bg-slate-900/40 p-7 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1.5 hover:border-blue-500/40 hover:bg-slate-900/70 hover:shadow-2xl hover:shadow-blue-500/5"
+            className="group relative block h-full overflow-hidden rounded-2xl border border-slate-800/80 bg-slate-900/40 p-5 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1.5 hover:border-blue-500/40 hover:bg-slate-900/70 hover:shadow-2xl hover:shadow-blue-500/5 sm:p-7"
           >
             <div className="flex items-start justify-between">
               <div>
@@ -123,7 +123,7 @@ function Contact() {
                   GitHub
                 </p>
 
-                <p className="mt-3 text-lg font-medium text-white transition-colors duration-300 group-hover:text-blue-400">
+                <p className="mt-3 text-base font-medium text-white transition-colors duration-300 group-hover:text-blue-400 sm:text-lg">
                   View my projects
                 </p>
               </div>
@@ -145,7 +145,7 @@ function Contact() {
             href="https://www.linkedin.com/in/kian-terrence-atienza-20411a368/"
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative block h-full overflow-hidden rounded-2xl border border-slate-800/80 bg-slate-900/40 p-7 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1.5 hover:border-blue-500/40 hover:bg-slate-900/70 hover:shadow-2xl hover:shadow-blue-500/5"
+            className="group relative block h-full overflow-hidden rounded-2xl border border-slate-800/80 bg-slate-900/40 p-5 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1.5 hover:border-blue-500/40 hover:bg-slate-900/70 hover:shadow-2xl hover:shadow-blue-500/5 sm:p-7"
           >
             <div className="flex items-start justify-between">
               <div>
@@ -160,7 +160,7 @@ function Contact() {
                   LinkedIn
                 </p>
 
-                <p className="mt-3 text-lg font-medium text-white transition-colors duration-300 group-hover:text-blue-400">
+                <p className="mt-3 text-base font-medium text-white transition-colors duration-300 group-hover:text-blue-400 sm:text-lg">
                   Connect with me
                 </p>
               </div>

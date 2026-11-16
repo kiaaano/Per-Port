@@ -5,7 +5,7 @@ import SpecularButton from "../reactbits/SpecularButton";
 
 function Hero() {
   return (
-  <section className="relative flex min-h-screen items-center overflow-hidden bg-slate-950 pt-[73px]">      <div className="absolute inset-0 h-full w-full opacity-50">
+  <section className="relative flex min-h-[100svh] items-center overflow-hidden bg-slate-950 pt-[73px]">      <div className="absolute inset-0 h-full w-full opacity-50">
           <Scanner
             color1="#1D4ED8"
             color2="#3B82F6"
@@ -37,11 +37,11 @@ function Hero() {
         </div>
 
       {/* Content */}
-      <div className="relative mx-auto grid w-full max-w-7xl items-center gap-12 px-6 py-16 sm:py-20 lg:grid-cols-2">
+      <div className="relative mx-auto grid w-full max-w-7xl items-center gap-5 px-4 py-10 sm:gap-12 sm:px-6 sm:py-20 lg:grid-cols-2">
 
         {/* Text */}
         <div className="order-2 lg:order-1">
-          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-blue-400">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-blue-400 sm:mb-4 sm:text-sm sm:tracking-[0.2em]">
             Junior Software Developer
           </p>
 
@@ -53,12 +53,12 @@ function Hero() {
               gradientWords={["modernity", "creativity", "purpose"]}
               gradientColors={["#3B82F6", "#6366F1", "#22D3EE"]}
               gradientAnimationSpeed={6}
-              className="max-w-3xl text-4xl font-semibold leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-6xl"
+              className="max-w-3xl text-4xl font-semibold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-6xl"
             />
 
           
 
-          <div className="mt-8 flex flex-wrap gap-4">
+          <div className="mt-6 flex w-full flex-col gap-3 min-[400px]:flex-row min-[400px]:flex-wrap sm:mt-8 sm:gap-4">
               <SpecularButton
                 href="#projects"
                 size="md"
@@ -75,6 +75,7 @@ function Hero() {
                 speed={0.35}
                 followMouse
                 proximity={250}
+                className="w-full min-[400px]:w-auto"
               >
                 View Projects
               </SpecularButton>
@@ -96,18 +97,19 @@ function Hero() {
                 speed={0.35}
                 followMouse
                 proximity={250}
+                className="w-full min-[400px]:w-auto"
               >
                 Download Resume
               </SpecularButton>
             </div>
 
-          <p className="mt-8 max-w-md text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+          <p className="mt-6 max-w-md text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-500 sm:mt-8 sm:text-xs sm:tracking-[0.2em]">
             Building with purpose. Learning without limits.
           </p>
         </div>
 
         {/* Profile */}
-        <div className="order-1 flex justify-center pb-16 lg:order-2 lg:pb-0">
+        <div className="order-1 flex justify-center pb-0 lg:order-2">
           <ProfileCard
             avatarUrl="/images/1x1_icon.png"
             miniAvatarUrl="/images/1x1_icon.png"

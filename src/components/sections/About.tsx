@@ -5,7 +5,7 @@ function About() {
   return (
     <section
       id="about"
-      className="relative overflow-hidden border-t border-slate-800 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 py-24"
+      className="relative overflow-hidden border-t border-slate-800 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 py-16 sm:py-24"
     >
       {/* Background glow */}
       <div className="pointer-events-none absolute inset-0">
@@ -14,9 +14,9 @@ function About() {
         <div className="absolute bottom-0 right-0 h-80 w-80 rounded-full bg-cyan-500/5 blur-3xl" />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-7xl px-6">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6">
         {/* Main content */}
-        <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
+        <div className="grid gap-8 sm:gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
           
           {/* Section heading */}
 <div>
@@ -33,14 +33,14 @@ function About() {
     direction="top"
     gradientWords={["curiosity", "purpose"]}
     gradientColors={["#60A5FA", "#67E8F9"]}
-    className="mt-4 text-4xl font-semibold leading-tight tracking-tight text-white sm:text-5xl"
+    className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-white sm:text-5xl"
   />
 </div>
 
           {/* Description */}
           <Reveal
             delay={0.15}
-            className="space-y-6 text-base leading-8 text-slate-400"
+            className="space-y-5 text-sm leading-7 text-slate-400 sm:space-y-6 sm:text-base sm:leading-8"
           >
               <Reveal delay={0.1}>
             <p>
@@ -68,11 +68,11 @@ function About() {
         </div>
 
         {/* Highlights */}
-        <div className="mt-16 grid gap-6 sm:grid-cols-3">
+        <div className="mt-12 grid gap-4 sm:mt-16 sm:grid-cols-3 sm:gap-6">
           
           {/* Web Development */}
           <Reveal className="h-full">
-          <div className="group h-full rounded-2xl border border-slate-800 bg-slate-900/40 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-blue-500/40 hover:bg-slate-900/70 hover:shadow-lg hover:shadow-blue-500/5">
+          <div className="group h-full rounded-2xl border border-slate-800 bg-slate-900/40 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-blue-500/40 hover:bg-slate-900/70 hover:shadow-lg hover:shadow-blue-500/5 sm:p-6">
             <p className="text-3xl font-semibold text-blue-400">
               01
             </p>
@@ -89,7 +89,7 @@ function About() {
 
           {/* Software Development */}
           <Reveal delay={0.15} className="h-full">
-          <div className="group h-full rounded-2xl border border-slate-800 bg-slate-900/40 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-blue-500/40 hover:bg-slate-900/70 hover:shadow-lg hover:shadow-blue-500/5">
+          <div className="group h-full rounded-2xl border border-slate-800 bg-slate-900/40 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-blue-500/40 hover:bg-slate-900/70 hover:shadow-lg hover:shadow-blue-500/5 sm:p-6">
             <p className="text-3xl font-semibold text-blue-400">
               02
             </p>
@@ -107,7 +107,7 @@ function About() {
 
           {/* AI */}
           <Reveal delay={0.3} className="h-full">
-          <div className="group h-full rounded-2xl border border-slate-800 bg-slate-900/40 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-blue-500/40 hover:bg-slate-900/70 hover:shadow-lg hover:shadow-blue-500/5">
+          <div className="group h-full rounded-2xl border border-slate-800 bg-slate-900/40 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-blue-500/40 hover:bg-slate-900/70 hover:shadow-lg hover:shadow-blue-500/5 sm:p-6">
             <p className="text-3xl font-semibold text-blue-400">
               03
             </p>

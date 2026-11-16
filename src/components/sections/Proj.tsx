@@ -60,7 +60,7 @@ function Proj() {
     <>
       <section
         id="projects"
-        className="relative overflow-x-clip bg-slate-950 px-4 pt-12 pb-40 text-white lg:px-8"
+        className="relative overflow-x-clip bg-slate-950 px-4 pt-12 pb-24 text-white sm:pb-40 lg:px-8"
       >
         <div className="mx-auto max-w-7xl">
           <Reveal className="max-w-2xl">
@@ -83,8 +83,8 @@ function Proj() {
             </p>
           </Reveal>
 
-          <Reveal className="mt-16">
-            <div className="relative h-[440px] sm:h-[480px]">
+          <Reveal className="mt-12 sm:mt-16">
+            <div className="relative h-[380px] min-[480px]:h-[420px] sm:h-[480px]">
               <CircularCarousel
                 centerOverlay={
                   <LightRays

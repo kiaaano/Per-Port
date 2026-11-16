@@ -782,6 +782,10 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
         }
 
         @media (max-width: 768px) {
+        .pc-card-wrapper {
+            touch-action: pan-y;
+        }
+
         .pc-card {
             height: 70svh;
             max-height: 450px;

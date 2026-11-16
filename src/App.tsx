@@ -45,7 +45,9 @@ function App() {
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth",
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? "auto"
+        : "smooth",
     });
   };
 
@@ -76,7 +78,7 @@ function App() {
 
       {/* Floating Back to Top */}
 <div
-  className={`fixed bottom-6 right-6 z-50 transition-all duration-500 ${
+  className={`fixed bottom-4 right-4 z-50 transition-all duration-500 sm:bottom-6 sm:right-6 ${
     showBackToTop
       ? "translate-y-0 opacity-100"
       : "pointer-events-none translate-y-4 opacity-0"
