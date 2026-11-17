@@ -1,5 +1,6 @@
 import certifications from "../../data/certifications";
 import BorderGlow from "../reactbits/BorderGlow";
+import GradientText from "../reactbits/GradientText";
 import Reveal from "../animations/Reveal";
 
 const categoryBadgeStyles: Record<string, string> = {
@@ -27,7 +28,15 @@ function Certifications() {
           </p>
 
           <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-5xl">
-            Continuous learning beyond the classroom.
+            <GradientText
+              colors={["#60A5FA", "#67E8F9"]}
+              animationSpeed={3}
+              showBorder={false}
+              className="inline"
+            >
+              Continuous
+            </GradientText>{" "}
+            learning beyond the classroom.
           </h2>
 
           <p className="mt-5 text-sm leading-7 text-slate-400 sm:mt-6 sm:text-base">

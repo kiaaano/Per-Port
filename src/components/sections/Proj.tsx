@@ -3,6 +3,7 @@ import { useState } from "react";
 import { projects } from "../../data/projects";
 import Reveal from "../animations/Reveal";
 import CircularCarousel from "../reactbits/CircularCarousel";
+import GradientText from "../reactbits/GradientText";
 import LightRays from "../reactbits/LightRays";
 import TiltedCard from "../reactbits/TiltedCard";
 
@@ -74,7 +75,14 @@ function Proj() {
 
             <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
               Projects built with{" "}
-              <span className="text-slate-400">purpose.</span>
+              <GradientText
+                colors={["#60A5FA", "#67E8F9"]}
+                animationSpeed={3}
+                showBorder={false}
+                className="inline"
+              >
+                purpose.
+              </GradientText>
             </h2>
 
             <p className="mt-5 text-sm leading-7 text-slate-400 md:text-base">

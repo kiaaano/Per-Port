@@ -1,6 +1,7 @@
 import { Mail, ArrowUpRight } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import GradientWaves from "../reactbits/GradientWaves";
+import GradientText from "../reactbits/GradientText";
 import Reveal from "../animations/Reveal";
 
 function Contact() {
@@ -53,9 +54,14 @@ function Contact() {
 
           <h2 className="mt-5 text-3xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
             Let's create something{" "}
-            <span className="bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
+            <GradientText
+              colors={["#60A5FA", "#67E8F9"]}
+              animationSpeed={3}
+              showBorder={false}
+              className="inline"
+            >
               meaningful.
-            </span>
+            </GradientText>
           </h2>
 
           <p className="mt-5 max-w-2xl text-sm leading-7 text-slate-400 sm:mt-6 sm:text-lg sm:leading-8">
